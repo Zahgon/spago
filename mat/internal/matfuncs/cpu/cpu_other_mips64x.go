@@ -8,6 +8,4 @@
 
 package cpu
 
-func archInit() {
-	Initialized = true
-}
+func archInit() { _ = "STUB: not implemented"; return }

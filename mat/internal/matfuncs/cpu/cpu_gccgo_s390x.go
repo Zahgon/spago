@@ -9,15 +9,19 @@ package cpu
 
 // haveAsmFunctions reports whether the other functions in this file can
 // be safely called.
-func haveAsmFunctions() bool { return false }
+func haveAsmFunctions() bool {
+	_ = "STUB: not implemented"
 
-// TODO(mundaym): the following feature detection functions are currently
-// stubs. See https://golang.org/cl/162887 for how to fix this.
-// They are likely to be expensive to call so the results should be cached.
-func stfle() facilityList     { panic("not implemented for gccgo") }
-func kmQuery() queryResult    { panic("not implemented for gccgo") }
-func kmcQuery() queryResult   { panic("not implemented for gccgo") }
-func kmctrQuery() queryResult { panic("not implemented for gccgo") }
-func kmaQuery() queryResult   { panic("not implemented for gccgo") }
-func kimdQuery() queryResult  { panic("not implemented for gccgo") }
-func klmdQuery() queryResult  { panic("not implemented for gccgo") }
+	// TODO(mundaym): the following feature detection functions are currently
+	// stubs. See https://golang.org/cl/162887 for how to fix this.
+	// They are likely to be expensive to call so the results should be cached.
+	return false
+}
+
+func stfle() facilityList     { _ = "STUB: not implemented"; return *new(facilityList) }
+func kmQuery() queryResult    { _ = "STUB: not implemented"; return *new(queryResult) }
+func kmcQuery() queryResult   { _ = "STUB: not implemented"; return *new(queryResult) }
+func kmctrQuery() queryResult { _ = "STUB: not implemented"; return *new(queryResult) }
+func kmaQuery() queryResult   { _ = "STUB: not implemented"; return *new(queryResult) }
+func kimdQuery() queryResult  { _ = "STUB: not implemented"; return *new(queryResult) }
+func klmdQuery() queryResult  { _ = "STUB: not implemented"; return *new(queryResult) }

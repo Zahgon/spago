@@ -5,8 +5,6 @@
 package gradfn
 
 import (
-	"fmt"
-
 	"github.com/nlpodyssey/spago/mat"
 )
 
@@ -16,41 +14,18 @@ type Log[O mat.Tensor] struct {
 }
 
 // NewLog returns a new Log Function.
-func NewLog[O mat.Tensor](x O) *Log[O] {
-	return &Log[O]{
-		x: x,
-	}
-}
+func NewLog[O mat.Tensor](x O) *Log[O] { _ = "STUB: not implemented"; return nil }
 
 // Operands returns the list of operands.
-func (l *Log[O]) Operands() []mat.Tensor {
-	return []mat.Tensor{l.x}
-}
+func (l *Log[O]) Operands() []mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 // Forward computes the output of the function.
 func (l *Log[O]) Forward() (mat.Tensor, error) {
-	return l.x.Value().(mat.Matrix).Log(), nil
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor), nil
 }
 
 // Backward computes the backward pass.
-func (l *Log[O]) Backward(gy mat.Tensor) error {
-	if !mat.SameDims(l.x.Value(), gy) {
-		return fmt.Errorf("fn: matrices have incompatible dimensions")
-	}
-	if l.x.RequiresGrad() {
-		gx := l.x.Value().(mat.Matrix).Apply(safeLogDeriv)
-		gx.ProdInPlace(gy.(mat.Matrix))
-		l.x.AccGrad(gx)
-	}
-	return nil
-}
+func (l *Log[O]) Backward(gy mat.Tensor) error { _ = "STUB: not implemented"; return nil }
 
-func safeLogDeriv(_, _ int, v float64) float64 {
-	if v > 0.0 {
-		return 1.0 / v
-	}
-	if v == 0.0 {
-		return 1.0 / 1.0e-08
-	}
-	panic("ag: invalid log for negative values")
-}
+func safeLogDeriv(_, _ int, v float64) float64 { _ = "STUB: not implemented"; return 0 }

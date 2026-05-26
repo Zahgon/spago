@@ -11,8 +11,6 @@ import (
 	"github.com/nlpodyssey/spago/mat/float"
 	"github.com/nlpodyssey/spago/nn"
 	"github.com/nlpodyssey/spago/nn/activation"
-	"github.com/nlpodyssey/spago/nn/linear"
-	"github.com/nlpodyssey/spago/nn/sgu"
 )
 
 var _ nn.Model = &Block{}
@@ -36,22 +34,6 @@ func init() {
 }
 
 // NewBlock returns a new Block.
-func NewBlock[T float.DType](config BlockConfig) *Block {
-	return &Block{
-		Layers: []nn.StandardModel{
-			linear.New[T](config.Dim, config.DimFF),
-			activation.New(activation.GELU),
-			sgu.New[T](sgu.Config{
-				Dim:        config.DimFF,
-				DimSeq:     config.SeqLen,
-				InitEps:    1e-3,
-				Activation: config.Activation,
-			}),
-			linear.New[T](config.DimFF/2, config.Dim),
-		},
-	}
-}
+func NewBlock[T float.DType](config BlockConfig) *Block { _ = "STUB: not implemented"; return nil }
 
-func (m *Block) Forward(xs ...mat.Tensor) []mat.Tensor {
-	return m.Layers.Forward(xs...)
-}
+func (m *Block) Forward(xs ...mat.Tensor) []mat.Tensor { _ = "STUB: not implemented"; return nil }

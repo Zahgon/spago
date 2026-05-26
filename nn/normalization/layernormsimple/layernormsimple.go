@@ -11,7 +11,6 @@ package layernormsimple
 import (
 	"encoding/gob"
 
-	"github.com/nlpodyssey/spago/ag"
 	"github.com/nlpodyssey/spago/mat"
 	"github.com/nlpodyssey/spago/nn"
 )
@@ -29,18 +28,10 @@ func init() {
 
 // New returns a new model.
 func New() *Model {
-	return &Model{}
+	_ = "STUB: not implemented"
+
+	// Forward performs the forward step for each input node and returns the result.
+	return nil
 }
 
-// Forward performs the forward step for each input node and returns the result.
-func (m *Model) Forward(xs ...mat.Tensor) []mat.Tensor {
-	ys := make([]mat.Tensor, len(xs))
-	eps := xs[0].Value().(mat.Matrix).NewScalar(1e-10)
-	for i, x := range xs {
-		mean := ag.ReduceMean(x)
-		dev := ag.SubScalar(x, mean)
-		stdDev := ag.Sqrt(ag.ReduceMean(ag.Square(dev)))
-		ys[i] = ag.DivScalar(ag.SubScalar(x, mean), ag.Add(stdDev, eps))
-	}
-	return ys
-}
+func (m *Model) Forward(xs ...mat.Tensor) []mat.Tensor { _ = "STUB: not implemented"; return nil }

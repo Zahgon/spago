@@ -9,7 +9,6 @@ import (
 	"github.com/nlpodyssey/spago/mat/float"
 	"github.com/nlpodyssey/spago/nn"
 	"github.com/nlpodyssey/spago/nn/activation"
-	"github.com/nlpodyssey/spago/nn/linear"
 )
 
 // FeedForward is the model for feed-forward operations of a MixerBlock.
@@ -19,17 +18,12 @@ type FeedForward struct {
 }
 
 func newFeedForward[T float.DType](dim, hiddenDim int, act activation.Activation, dropout T) *FeedForward {
-	return &FeedForward{
-		Layers: []nn.StandardModel{
-			linear.New[T](dim, hiddenDim),
-			activation.New(act),
-			// dropout.New(dropout),
-			linear.New[T](hiddenDim, dim),
-			// dropout.New(dropout),
-		},
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (m *FeedForward) Forward(xs ...mat.Tensor) []mat.Tensor {
-	return m.Layers.Forward(xs...)
-}
+// dropout.New(dropout),
+
+// dropout.New(dropout),
+
+func (m *FeedForward) Forward(xs ...mat.Tensor) []mat.Tensor { _ = "STUB: not implemented"; return nil }

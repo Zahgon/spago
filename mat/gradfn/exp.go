@@ -5,8 +5,6 @@
 package gradfn
 
 import (
-	"fmt"
-
 	"github.com/nlpodyssey/spago/mat"
 )
 
@@ -16,31 +14,16 @@ type Exp[O mat.Tensor] struct {
 }
 
 // NewExp returns a new Exp Function.
-func NewExp[O mat.Tensor](x O) *Exp[O] {
-	return &Exp[O]{
-		x: x,
-	}
-}
+func NewExp[O mat.Tensor](x O) *Exp[O] { _ = "STUB: not implemented"; return nil }
 
 // Operands returns the list of operands.
-func (e *Exp[O]) Operands() []mat.Tensor {
-	return []mat.Tensor{e.x}
-}
+func (e *Exp[O]) Operands() []mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 // Forward computes the output of the function.
 func (e *Exp[O]) Forward() (mat.Tensor, error) {
-	return e.x.Value().(mat.Matrix).Exp(), nil
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor), nil
 }
 
 // Backward computes the backward pass.
-func (e *Exp[O]) Backward(gy mat.Tensor) error {
-	if !mat.SameDims(e.x.Value(), gy) {
-		return fmt.Errorf("fn: matrices have incompatible dimensions")
-	}
-	if e.x.RequiresGrad() {
-		gx := e.x.Value().(mat.Matrix).Exp()
-		gx.ProdInPlace(gy.(mat.Matrix))
-		e.x.AccGrad(gx)
-	}
-	return nil
-}
+func (e *Exp[O]) Backward(gy mat.Tensor) error { _ = "STUB: not implemented"; return nil }

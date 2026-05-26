@@ -15,29 +15,16 @@ type At[O mat.Tensor] struct {
 }
 
 // NewAt returns a new At Function.
-func NewAt[O mat.Tensor](x O, indices ...int) *At[O] {
-	return &At[O]{
-		x:       x,
-		indices: indices,
-	}
-}
+func NewAt[O mat.Tensor](x O, indices ...int) *At[O] { _ = "STUB: not implemented"; return nil }
 
 // Operands returns the list of operands.
-func (r *At[O]) Operands() []mat.Tensor {
-	return []mat.Tensor{r.x}
-}
+func (r *At[O]) Operands() []mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 // Forward computes the output of the function.
 func (r *At[O]) Forward() (mat.Tensor, error) {
-	return r.x.Value().(mat.Matrix).At(r.indices...), nil
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor), nil
 }
 
 // Backward computes the backward pass.
-func (r *At[O]) Backward(gy mat.Tensor) error {
-	if r.x.RequiresGrad() {
-		dx := r.x.Value().(mat.Matrix).ZerosLike()
-		dx.SetAt(gy.(mat.Matrix), r.indices...)
-		r.x.AccGrad(dx)
-	}
-	return nil
-}
+func (r *At[O]) Backward(gy mat.Tensor) error { _ = "STUB: not implemented"; return nil }

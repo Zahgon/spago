@@ -5,8 +5,6 @@
 package gradfn
 
 import (
-	"fmt"
-
 	"github.com/nlpodyssey/spago/mat"
 )
 
@@ -18,32 +16,16 @@ type CELU[O mat.Tensor] struct {
 }
 
 // NewCELU returns a new CELU Function.
-func NewCELU[O mat.Tensor](x O, alpha O) *CELU[O] {
-	return &CELU[O]{
-		x:     x,
-		alpha: alpha,
-	}
-}
+func NewCELU[O mat.Tensor](x O, alpha O) *CELU[O] { _ = "STUB: not implemented"; return nil }
 
 // Operands returns the list of operands.
-func (r *CELU[O]) Operands() []mat.Tensor {
-	return []mat.Tensor{r.x, r.alpha}
-}
+func (r *CELU[O]) Operands() []mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 // Forward computes the output of the function.
 func (r *CELU[O]) Forward() (mat.Tensor, error) {
-	return r.x.Value().(mat.Matrix).ApplyWithAlpha(celu, r.alpha.Value().Item().F64()), nil
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor), nil
 }
 
 // Backward computes the backward pass.
-func (r *CELU[O]) Backward(gy mat.Tensor) error {
-	if !mat.SameDims(r.x.Value().(mat.Matrix), gy.(mat.Matrix)) {
-		return fmt.Errorf("fn: matrices have incompatible dimensions")
-	}
-	if r.x.RequiresGrad() {
-		gx := r.x.Value().(mat.Matrix).ApplyWithAlpha(celuDeriv, r.alpha.Value().Item().F64())
-		gx.ProdInPlace(gy.(mat.Matrix))
-		r.x.AccGrad(gx)
-	}
-	return nil
-}
+func (r *CELU[O]) Backward(gy mat.Tensor) error { _ = "STUB: not implemented"; return nil }

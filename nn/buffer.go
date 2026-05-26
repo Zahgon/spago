@@ -7,7 +7,6 @@ package nn
 import (
 	"encoding/gob"
 
-	"github.com/nlpodyssey/spago/ag"
 	"github.com/nlpodyssey/spago/mat"
 )
 
@@ -23,8 +22,4 @@ func init() {
 }
 
 // Buf creates a new Buffer Node.
-func Buf(value mat.Tensor) *Buffer {
-	return &Buffer{
-		Tensor: ag.StopGrad(value),
-	}
-}
+func Buf(value mat.Tensor) *Buffer { _ = "STUB: not implemented"; return nil }

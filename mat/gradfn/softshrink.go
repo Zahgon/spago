@@ -5,8 +5,6 @@
 package gradfn
 
 import (
-	"fmt"
-
 	"github.com/nlpodyssey/spago/mat"
 )
 
@@ -18,31 +16,18 @@ type SoftShrink[O mat.Tensor] struct {
 
 // NewSoftShrink returns a new SoftShrink Function.
 func NewSoftShrink[O mat.Tensor](x O, lambda O) *SoftShrink[O] {
-	return &SoftShrink[O]{
-		x:      x,
-		lambda: lambda,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Operands returns the list of operands.
-func (r *SoftShrink[O]) Operands() []mat.Tensor {
-	return []mat.Tensor{r.x, r.lambda}
-}
+func (r *SoftShrink[O]) Operands() []mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 // Forward computes the output of the function.
 func (r *SoftShrink[O]) Forward() (mat.Tensor, error) {
-	return r.x.Value().(mat.Matrix).ApplyWithAlpha(softShrink, r.lambda.Value().Item().F64()), nil
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor), nil
 }
 
 // Backward computes the backward pass.
-func (r *SoftShrink[O]) Backward(gy mat.Tensor) error {
-	if !mat.SameDims(r.x.Value(), gy) {
-		return fmt.Errorf("fn: matrices have incompatible dimensions")
-	}
-	if r.x.RequiresGrad() {
-		gx := r.x.Value().(mat.Matrix).ApplyWithAlpha(softShrinkDeriv, r.lambda.Value().Item().F64())
-		gx.ProdInPlace(gy.(mat.Matrix))
-		r.x.AccGrad(gx)
-	}
-	return nil
-}
+func (r *SoftShrink[O]) Backward(gy mat.Tensor) error { _ = "STUB: not implemented"; return nil }

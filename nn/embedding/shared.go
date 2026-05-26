@@ -6,7 +6,6 @@ package embedding
 
 import (
 	"encoding/gob"
-	"fmt"
 )
 
 // Shared wraps Model, overriding binary marshaling methods in order
@@ -19,18 +18,15 @@ type Shared struct {
 // MarshalBinary satisfies encoding.BinaryMarshaler interface.
 // It always produces empty data (nil) and no error.
 func (Shared) MarshalBinary() ([]byte, error) {
+	_ = "STUB: not implemented"
+
+	// UnmarshalBinary satisfies encoding.BinaryUnmarshaler interface.
+	// It only accepts empty data (nil or zero-length slice), producing no
+	// side effects at all. If data is not blank, it returns an error.
 	return nil, nil
 }
 
-// UnmarshalBinary satisfies encoding.BinaryUnmarshaler interface.
-// It only accepts empty data (nil or zero-length slice), producing no
-// side effects at all. If data is not blank, it returns an error.
-func (Shared) UnmarshalBinary(data []byte) error {
-	if len(data) != 0 {
-		return fmt.Errorf("Shared.UnmarshalBinary: empty data expected, actual data len %d", len(data))
-	}
-	return nil
-}
+func (Shared) UnmarshalBinary(data []byte) error { _ = "STUB: not implemented"; return nil }
 
 func init() {
 	gob.Register(Shared{})

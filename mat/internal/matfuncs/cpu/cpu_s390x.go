@@ -6,34 +6,11 @@ package cpu
 
 const cacheLineSize = 256
 
-func initOptions() {
-	options = []option{
-		{Name: "zarch", Feature: &S390X.HasZARCH, Required: true},
-		{Name: "stfle", Feature: &S390X.HasSTFLE, Required: true},
-		{Name: "ldisp", Feature: &S390X.HasLDISP, Required: true},
-		{Name: "eimm", Feature: &S390X.HasEIMM, Required: true},
-		{Name: "dfp", Feature: &S390X.HasDFP},
-		{Name: "etf3eh", Feature: &S390X.HasETF3EH},
-		{Name: "msa", Feature: &S390X.HasMSA},
-		{Name: "aes", Feature: &S390X.HasAES},
-		{Name: "aescbc", Feature: &S390X.HasAESCBC},
-		{Name: "aesctr", Feature: &S390X.HasAESCTR},
-		{Name: "aesgcm", Feature: &S390X.HasAESGCM},
-		{Name: "ghash", Feature: &S390X.HasGHASH},
-		{Name: "sha1", Feature: &S390X.HasSHA1},
-		{Name: "sha256", Feature: &S390X.HasSHA256},
-		{Name: "sha3", Feature: &S390X.HasSHA3},
-		{Name: "sha512", Feature: &S390X.HasSHA512},
-		{Name: "vx", Feature: &S390X.HasVX},
-		{Name: "vxe", Feature: &S390X.HasVXE},
-	}
-}
+func initOptions() { _ = "STUB: not implemented"; return }
 
 // bitIsSet reports whether the bit at index is set. The bit index
 // is in big endian order, so bit index 0 is the leftmost bit.
-func bitIsSet(bits []uint64, index uint) bool {
-	return bits[index/64]&((1<<63)>>(index%64)) != 0
-}
+func bitIsSet(bits []uint64, index uint) bool { _ = "STUB: not implemented"; return false }
 
 // facility is a bit index for the named facility.
 type facility uint8
@@ -71,17 +48,7 @@ type facilityList struct {
 }
 
 // Has reports whether the given facilities are present.
-func (s *facilityList) Has(fs ...facility) bool {
-	if len(fs) == 0 {
-		panic("no facility bits provided")
-	}
-	for _, f := range fs {
-		if !bitIsSet(s.bits[:], uint(f)) {
-			return false
-		}
-	}
-	return true
-}
+func (s *facilityList) Has(fs ...facility) bool { _ = "STUB: not implemented"; return false }
 
 // function is the code for the named cryptographic function.
 type function uint8
@@ -115,58 +82,22 @@ type queryResult struct {
 }
 
 // Has reports whether the given functions are present.
-func (q *queryResult) Has(fns ...function) bool {
-	if len(fns) == 0 {
-		panic("no function codes provided")
-	}
-	for _, f := range fns {
-		if !bitIsSet(q.bits[:], uint(f)) {
-			return false
-		}
-	}
-	return true
-}
+func (q *queryResult) Has(fns ...function) bool { _ = "STUB: not implemented"; return false }
 
 func doinit() {
-	initS390Xbase()
+	_ = "STUB: not implemented"
 
 	// We need implementations of stfle, km and so on
 	// to detect cryptographic features.
-	if !haveAsmFunctions() {
-		return
-	}
-
-	// optional cryptographic functions
-	if S390X.HasMSA {
-		aes := []function{aes128, aes192, aes256}
-
-		// cipher message
-		km, kmc := kmQuery(), kmcQuery()
-		S390X.HasAES = km.Has(aes...)
-		S390X.HasAESCBC = kmc.Has(aes...)
-		if S390X.HasSTFLE {
-			facilities := stfle()
-			if facilities.Has(msa4) {
-				kmctr := kmctrQuery()
-				S390X.HasAESCTR = kmctr.Has(aes...)
-			}
-			if facilities.Has(msa8) {
-				kma := kmaQuery()
-				S390X.HasAESGCM = kma.Has(aes...)
-			}
-		}
-
-		// compute message digest
-		kimd := kimdQuery() // intermediate (no padding)
-		klmd := klmdQuery() // last (padding)
-		S390X.HasSHA1 = kimd.Has(sha1) && klmd.Has(sha1)
-		S390X.HasSHA256 = kimd.Has(sha256) && klmd.Has(sha256)
-		S390X.HasSHA512 = kimd.Has(sha512) && klmd.Has(sha512)
-		S390X.HasGHASH = kimd.Has(ghash) // KLMD-GHASH does not exist
-		sha3 := []function{
-			sha3_224, sha3_256, sha3_384, sha3_512,
-			shake128, shake256,
-		}
-		S390X.HasSHA3 = kimd.Has(sha3...) && klmd.Has(sha3...)
-	}
+	return
 }
+
+// optional cryptographic functions
+
+// cipher message
+
+// compute message digest
+// intermediate (no padding)
+// last (padding)
+
+// KLMD-GHASH does not exist

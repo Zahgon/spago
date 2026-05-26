@@ -5,8 +5,6 @@
 package gradfn
 
 import (
-	"fmt"
-
 	"github.com/nlpodyssey/spago/mat"
 )
 
@@ -16,34 +14,19 @@ type Sigmoid[O mat.Tensor] struct {
 }
 
 // NewSigmoid returns a new Log Function.
-func NewSigmoid[O mat.Tensor](x O) *Sigmoid[O] {
-	return &Sigmoid[O]{
-		x: x,
-	}
-}
+func NewSigmoid[O mat.Tensor](x O) *Sigmoid[O] { _ = "STUB: not implemented"; return nil }
 
 // Operands returns the list of operands.
-func (l *Sigmoid[O]) Operands() []mat.Tensor {
-	return []mat.Tensor{l.x}
-}
+func (l *Sigmoid[O]) Operands() []mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 // Forward computes the output of the function.
 func (l *Sigmoid[O]) Forward() (mat.Tensor, error) {
+	_ = "STUB: not implemented"
 	// TODO: cache the sigmoid value in the forward pass for the backward pass?
-	return l.x.Value().(mat.Matrix).Sigmoid(), nil
+	return *new(mat.Tensor), nil
 }
 
 // Backward computes the backward pass.
-func (l *Sigmoid[O]) Backward(gy mat.Tensor) error {
-	if !mat.SameDims(l.x.Value(), gy) {
-		return fmt.Errorf("fn: matrices have incompatible dimensions")
-	}
-	if l.x.RequiresGrad() {
-		gx := l.x.Value().(mat.Matrix).Sigmoid().Apply(func(_, _ int, v float64) float64 {
-			return v * (1.0 - v) // derivative of the sigmoid function
-		})
-		gx.ProdInPlace(gy.(mat.Matrix))
-		l.x.AccGrad(gx)
-	}
-	return nil
-}
+func (l *Sigmoid[O]) Backward(gy mat.Tensor) error { _ = "STUB: not implemented"; return nil }
+
+// derivative of the sigmoid function

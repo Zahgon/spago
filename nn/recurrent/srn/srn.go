@@ -7,7 +7,6 @@ package srn
 import (
 	"encoding/gob"
 
-	"github.com/nlpodyssey/spago/ag"
 	"github.com/nlpodyssey/spago/mat"
 	"github.com/nlpodyssey/spago/mat/float"
 	"github.com/nlpodyssey/spago/nn"
@@ -33,35 +32,11 @@ func init() {
 }
 
 // New returns a new model with parameters initialized to zeros.
-func New[T float.DType](in, out int) *Model {
-	return &Model{
-		W:    nn.NewParam(mat.NewDense[T](mat.WithShape(out, in))),
-		WRec: nn.NewParam(mat.NewDense[T](mat.WithShape(out, out))),
-		B:    nn.NewParam(mat.NewDense[T](mat.WithShape(out))),
-	}
-}
+func New[T float.DType](in, out int) *Model { _ = "STUB: not implemented"; return nil }
 
-func (m *Model) Forward(xs ...mat.Tensor) []mat.Tensor {
-	ys := make([]mat.Tensor, len(xs))
-	var s *State = nil
-	for i, x := range xs {
-		s = m.Next(s, x)
-		ys[i] = s.Y
-	}
-	return ys
-}
+func (m *Model) Forward(xs ...mat.Tensor) []mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 // Next performs a single forward step, producing a new state.
 //
 // y = tanh(w (dot) x + b + wRec (dot) yPrev)
-func (m *Model) Next(state *State, x mat.Tensor) (s *State) {
-	s = new(State)
-
-	var yPrev mat.Tensor = nil
-	if state != nil {
-		yPrev = state.Y
-	}
-
-	s.Y = ag.Tanh(ag.Affine(m.B, m.W, x, m.WRec, yPrev))
-	return
-}
+func (m *Model) Next(state *State, x mat.Tensor) (s *State) { _ = "STUB: not implemented"; return nil }

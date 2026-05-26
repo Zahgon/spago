@@ -5,8 +5,6 @@
 package ag
 
 import (
-	"sync"
-
 	"github.com/nlpodyssey/spago/mat"
 )
 
@@ -20,45 +18,16 @@ import (
 //
 // During the back-propagation process, the gradients of all tensors, except for the given tensors, are summed to the existing gradients.
 // Unless you intend to do so, ensure that all tensors have zero gradients.
-func Backward(xs ...mat.Tensor) error {
-	ops := filterOperators(xs)
-	if len(ops) == 0 {
-		return nil
-	}
+func Backward(xs ...mat.Tensor) error { _ = "STUB: not implemented"; return nil }
 
-	// The three for loops below are intentionally executed in sequence.
-	// These steps must occur in this order, so the loops cannot be combined due to their sequential dependencies.
+// The three for loops below are intentionally executed in sequence.
+// These steps must occur in this order, so the loops cannot be combined due to their sequential dependencies.
 
-	// 1. Prepare the backward pass for each operator.
-	for _, op := range ops {
-		op.prepareBackwardPass()
-	}
+// 1. Prepare the backward pass for each operator.
 
-	// 2. Assign the output gradients for each operator.
-	for _, op := range ops {
-		if err := op.assignOutputGradient(); err != nil {
-			return err
-		}
-	}
+// 2. Assign the output gradients for each operator.
 
-	// 3. Process the backward pass for each operator in parallel using wait groups.
-	wg := &sync.WaitGroup{}
-	for _, op := range ops {
-		op.processBackwardPass(wg)
-	}
-	wg.Wait()
-
-	return nil
-}
+// 3. Process the backward pass for each operator in parallel using wait groups.
 
 // filterOperators returns a list of operators from a list of tensors.
-func filterOperators(nodes []mat.Tensor) []*Operator {
-	ops := make([]*Operator, 0, len(nodes))
-	for _, node := range nodes {
-		switch op := node.(type) {
-		case *Operator:
-			ops = append(ops, op)
-		}
-	}
-	return ops
-}
+func filterOperators(nodes []mat.Tensor) []*Operator { _ = "STUB: not implemented"; return nil }

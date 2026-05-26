@@ -6,11 +6,6 @@
 // various CPU architectures.
 package cpu
 
-import (
-	"os"
-	"strings"
-)
-
 // Initialized reports whether the CPU features were initialized.
 //
 // For some GOOS/GOARCH combinations initialization of the CPU features depends
@@ -216,72 +211,6 @@ type option struct {
 	Required  bool // whether feature is mandatory and can not be disabled
 }
 
-func processOptions() {
-	env := os.Getenv("GODEBUG")
-field:
-	for env != "" {
-		field := ""
-		i := strings.IndexByte(env, ',')
-		if i < 0 {
-			field, env = env, ""
-		} else {
-			field, env = env[:i], env[i+1:]
-		}
-		if len(field) < 4 || field[:4] != "cpu." {
-			continue
-		}
-		i = strings.IndexByte(field, '=')
-		if i < 0 {
-			print("GODEBUG sys/cpu: no value specified for \"", field, "\"\n")
-			continue
-		}
-		key, value := field[4:i], field[i+1:] // e.g. "SSE2", "on"
+func processOptions() { _ = "STUB: not implemented"; return }
 
-		var enable bool
-		switch value {
-		case "on":
-			enable = true
-		case "off":
-			enable = false
-		default:
-			print("GODEBUG sys/cpu: value \"", value, "\" not supported for cpu option \"", key, "\"\n")
-			continue field
-		}
-
-		if key == "all" {
-			for i := range options {
-				options[i].Specified = true
-				options[i].Enable = enable || options[i].Required
-			}
-			continue field
-		}
-
-		for i := range options {
-			if options[i].Name == key {
-				options[i].Specified = true
-				options[i].Enable = enable
-				continue field
-			}
-		}
-
-		print("GODEBUG sys/cpu: unknown cpu feature \"", key, "\"\n")
-	}
-
-	for _, o := range options {
-		if !o.Specified {
-			continue
-		}
-
-		if o.Enable && !*o.Feature {
-			print("GODEBUG sys/cpu: can not enable \"", o.Name, "\", missing CPU support\n")
-			continue
-		}
-
-		if !o.Enable && o.Required {
-			print("GODEBUG sys/cpu: can not disable \"", o.Name, "\", required CPU feature\n")
-			continue
-		}
-
-		*o.Feature = o.Enable
-	}
-}
+// e.g. "SSE2", "on"

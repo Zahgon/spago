@@ -14,21 +14,6 @@ const (
 	_IMPL_POWER9 = 0x20000
 )
 
-func archInit() {
-	impl := getsystemcfg(_SC_IMPL)
-	if impl&_IMPL_POWER8 != 0 {
-		PPC64.IsPOWER8 = true
-	}
-	if impl&_IMPL_POWER9 != 0 {
-		PPC64.IsPOWER8 = true
-		PPC64.IsPOWER9 = true
-	}
+func archInit() { _ = "STUB: not implemented"; return }
 
-	Initialized = true
-}
-
-func getsystemcfg(label int) (n uint64) {
-	r0, _ := callgetsystemcfg(label)
-	n = uint64(r0)
-	return
-}
+func getsystemcfg(label int) (n uint64) { _ = "STUB: not implemented"; return 0 }

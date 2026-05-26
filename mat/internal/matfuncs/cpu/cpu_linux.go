@@ -7,10 +7,4 @@
 
 package cpu
 
-func archInit() {
-	if err := readHWCAP(); err != nil {
-		return
-	}
-	doinit()
-	Initialized = true
-}
+func archInit() { _ = "STUB: not implemented"; return }

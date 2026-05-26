@@ -5,8 +5,6 @@
 package gradfn
 
 import (
-	"fmt"
-
 	"github.com/nlpodyssey/spago/mat"
 )
 
@@ -17,37 +15,16 @@ type ColView[O mat.Tensor] struct {
 }
 
 // NewColView extracts the i-th column from the input matrix.
-func NewColView[O mat.Tensor](x O, i int) *ColView[O] {
-	if i < 0 {
-		panic("fn: invalid column index")
-	}
-	return &ColView[O]{
-		x: x,
-		i: i,
-	}
-}
+func NewColView[O mat.Tensor](x O, i int) *ColView[O] { _ = "STUB: not implemented"; return nil }
 
 // Operands returns the list of operands.
-func (r *ColView[O]) Operands() []mat.Tensor {
-	return []mat.Tensor{r.x}
-}
+func (r *ColView[O]) Operands() []mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 // Forward computes the output of the function.
 func (r *ColView[O]) Forward() (mat.Tensor, error) {
-	return r.x.Value().(mat.Matrix).ExtractColumn(r.i), nil
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor), nil
 }
 
 // Backward computes the backward pass.
-func (r *ColView[O]) Backward(gy mat.Tensor) error {
-	if !(r.x.Value().Shape()[0] == gy.Size()) {
-		return fmt.Errorf("fn: the number of rows of the input matrix must be equal to the number of rows of the gradient")
-	}
-	if r.x.RequiresGrad() {
-		gx := r.x.Value().(mat.Matrix).ZerosLike()
-		for i := 0; i < r.x.Value().Shape()[0]; i++ {
-			gx.SetScalar(gy.(mat.Matrix).ScalarAt(i), i, r.i)
-		}
-		r.x.AccGrad(gx)
-	}
-	return nil
-}
+func (r *ColView[O]) Backward(gy mat.Tensor) error { _ = "STUB: not implemented"; return nil }

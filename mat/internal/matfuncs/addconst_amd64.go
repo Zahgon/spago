@@ -19,11 +19,7 @@ func init() {
 }
 
 // AddConst32 adds a constant value c to each element of x, storing the result in y (32 bits).
-func AddConst32(c float32, x, y []float32) {
-	addConst32(c, x, y)
-}
+func AddConst32(c float32, x, y []float32) { _ = "STUB: not implemented"; return }
 
 // AddConst64 adds a constant value c to each element of x, storing the result in y (64 bits).
-func AddConst64(c float64, x, y []float64) {
-	addConst64(c, x, y)
-}
+func AddConst64(c float64, x, y []float64) { _ = "STUB: not implemented"; return }

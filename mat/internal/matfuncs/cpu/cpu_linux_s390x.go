@@ -18,23 +18,11 @@ const (
 )
 
 func initS390Xbase() {
+	_ = "STUB: not implemented"
 	// test HWCAP bit vector
-	has := func(featureMask uint) bool {
-		return hwCap&featureMask == featureMask
-	}
-
-	// mandatory
-	S390X.HasZARCH = has(hwcap_ZARCH)
-
-	// optional
-	S390X.HasSTFLE = has(hwcap_STFLE)
-	S390X.HasLDISP = has(hwcap_LDISP)
-	S390X.HasEIMM = has(hwcap_EIMM)
-	S390X.HasETF3EH = has(hwcap_ETF3EH)
-	S390X.HasDFP = has(hwcap_DFP)
-	S390X.HasMSA = has(hwcap_MSA)
-	S390X.HasVX = has(hwcap_VX)
-	if S390X.HasVX {
-		S390X.HasVXE = has(hwcap_VXE)
-	}
+	return
 }
+
+// mandatory
+
+// optional

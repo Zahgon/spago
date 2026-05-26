@@ -15,10 +15,9 @@ const (
 )
 
 func doinit() {
+	_ = "STUB: not implemented"
 	// HWCAP feature bits
-	MIPS64X.HasMSA = isSet(hwCap, hwcap_MIPS_MSA)
+	return
 }
 
-func isSet(hwc uint, value uint) bool {
-	return hwc&value != 0
-}
+func isSet(hwc uint, value uint) bool { _ = "STUB: not implemented"; return false }

@@ -5,8 +5,6 @@
 package gradfn
 
 import (
-	"fmt"
-
 	"github.com/nlpodyssey/spago/mat"
 )
 
@@ -16,30 +14,16 @@ type Transpose[O mat.Tensor] struct {
 }
 
 // NewTranspose returns a new Transpose Function.
-func NewTranspose[O mat.Tensor](x O) *Transpose[O] {
-	return &Transpose[O]{
-		x: x,
-	}
-}
+func NewTranspose[O mat.Tensor](x O) *Transpose[O] { _ = "STUB: not implemented"; return nil }
 
 // Operands returns the list of operands.
-func (r *Transpose[O]) Operands() []mat.Tensor {
-	return []mat.Tensor{r.x}
-}
+func (r *Transpose[O]) Operands() []mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 // Forward computes the output of the node.
 func (r *Transpose[O]) Forward() (mat.Tensor, error) {
-	return r.x.Value().(mat.Matrix).T(), nil
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor), nil
 }
 
 // Backward computes the backward pass.
-func (r *Transpose[O]) Backward(gy mat.Tensor) error {
-	if r.x.Value().Shape()[1] != gy.Shape()[0] && r.x.Value().Shape()[0] != gy.Shape()[1] {
-		return fmt.Errorf("fn: matrices have incompatible dimensions")
-	}
-	if r.x.RequiresGrad() {
-		gx := gy.(mat.Matrix).T()
-		r.x.AccGrad(gx)
-	}
-	return nil
-}
+func (r *Transpose[O]) Backward(gy mat.Tensor) error { _ = "STUB: not implemented"; return nil }

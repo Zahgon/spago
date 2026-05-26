@@ -17,84 +17,29 @@ type Model interface {
 
 // Apply fn recursively to every sub-models as well as self.
 // Typical use includes initializing the parameters of a model.
-func Apply(m Model, fn func(model Model)) {
-	fn(m)
-	paramsTraversal{
-		paramsFunc:       nil,
-		modelsFunc:       fn,
-		exploreSubModels: true,
-	}.walk(m)
-}
+func Apply(m Model, fn func(model Model)) { _ = "STUB: not implemented"; return }
 
 type ParamChannelFunc func(ctx context.Context) <-chan *Param
 
-func Parameters(m Model) ParamChannelFunc {
-	return func(ctx context.Context) <-chan *Param {
-		paramChan := make(chan *Param)
+func Parameters(m Model) ParamChannelFunc { _ = "STUB: not implemented"; return *new(ParamChannelFunc) }
 
-		go func() {
-			defer close(paramChan)
-			paramsTraversal{
-				paramsFunc: func(param *Param) {
-					select {
-					case <-ctx.Done():
-						return // Stop sending to the channel if context is done
-					case paramChan <- param:
-					}
-				},
-				modelsFunc:       nil,
-				exploreSubModels: true,
-			}.walk(m)
-		}()
-
-		return paramChan
-	}
-}
+// Stop sending to the channel if context is done
 
 func StreamParams(params []*Param) ParamChannelFunc {
-	return func(ctx context.Context) <-chan *Param {
-		paramChan := make(chan *Param)
-
-		go func() {
-			defer close(paramChan)
-
-			for _, param := range params {
-				select {
-				case <-ctx.Done():
-					return // Stop if context is done
-				case paramChan <- param:
-				}
-			}
-		}()
-
-		return paramChan
-	}
+	_ = "STUB: not implemented"
+	return *new(ParamChannelFunc)
 }
+
+// Stop if context is done
 
 // ForEachParam iterate all the parameters of a model also exploring the sub-parameters recursively.
-func ForEachParam(m Model, fn func(param *Param)) {
-	paramsTraversal{
-		paramsFunc:       fn,
-		modelsFunc:       nil,
-		exploreSubModels: true,
-	}.walk(m)
-}
+func ForEachParam(m Model, fn func(param *Param)) { _ = "STUB: not implemented"; return }
 
 // ForEachParamStrict iterate all the parameters of a model without exploring the sub-models.
-func ForEachParamStrict(m Model, fn func(param *Param)) {
-	paramsTraversal{
-		paramsFunc:       fn,
-		modelsFunc:       nil,
-		exploreSubModels: false,
-	}.walk(m)
-}
+func ForEachParamStrict(m Model, fn func(param *Param)) { _ = "STUB: not implemented"; return }
 
 // ZeroGrad set the gradients of all model's parameters (including sub-params) to zeros.
-func ZeroGrad(m Model) {
-	ForEachParam(m, func(param *Param) {
-		param.ZeroGrad()
-	})
-}
+func ZeroGrad(m Model) { _ = "STUB: not implemented"; return }
 
 // StandardModel consists of a model that implements a Forward variadic function that accepts mat.Tensor and returns a slice of mat.Tensor.
 // It is called StandardModel since this is the most frequent forward method among all implemented neural models.
@@ -110,8 +55,6 @@ type ModuleList[T StandardModel] []T
 // Forward operates on a slice of StandardModel connecting outputs to inputs sequentially for each module following,
 // finally returning its output.
 func (ml ModuleList[T]) Forward(xs ...mat.Tensor) []mat.Tensor {
-	for _, m := range ml {
-		xs = m.Forward(xs...)
-	}
-	return xs
+	_ = "STUB: not implemented"
+	return nil
 }

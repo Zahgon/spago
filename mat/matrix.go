@@ -231,119 +231,52 @@ func init() {
 
 // Data returns the underlying data of the matrix, as a raw one-dimensional
 // slice of values in row-major order.
-func Data[T float.DType](m Tensor) []T {
-	if d, ok := m.(*Dense[T]); ok {
-		return d.data
-	}
-	return float.SliceValueOf[T](m.Data())
-}
+func Data[T float.DType](m Tensor) []T { _ = "STUB: not implemented"; return nil }
 
 // SetData sets the content of the matrix, copying the given raw
 // data representation as one-dimensional slice.
-func SetData[T float.DType](m Tensor, data []T) {
-	m.(Matrix).SetData(float.Make(data...)) // TODO: generalize over Matrix
-}
+func SetData[T float.DType](m Tensor, data []T) { _ = "STUB: not implemented"; return }
+
+// TODO: generalize over Matrix
 
 // IsVector returns whether the matrix is either a row or column vector
 // (dimensions N×1 or 1×N).
-func IsVector(m Tensor) bool {
-	shape := m.Shape()
-	return shape[0] == 1 || shape[1] == 1
-}
+func IsVector(m Tensor) bool { _ = "STUB: not implemented"; return false }
 
 // IsScalar returns whether the matrix contains exactly one scalar value
 // (dimensions 1×1).
-func IsScalar(m Tensor) bool {
-	return m.Size() == 1
-}
+func IsScalar(m Tensor) bool { _ = "STUB: not implemented"; return false }
 
 // SameDims reports whether the two matrices have the same dimensions.
-func SameDims(a, b Tensor) bool {
-	return areSlicesEqual(a.Shape(), b.Shape())
-}
+func SameDims(a, b Tensor) bool { _ = "STUB: not implemented"; return false }
 
-func areSlicesEqual(slice1, slice2 []int) bool {
-	if len(slice1) != len(slice2) {
-		return false
-	}
-
-	for i := 0; i < len(slice1); i++ {
-		if slice1[i] != slice2[i] {
-			return false
-		}
-	}
-
-	return true
-}
+func areSlicesEqual(slice1, slice2 []int) bool { _ = "STUB: not implemented"; return false }
 
 // ConcatV concatenates two or more vectors "vertically", creating a new Dense
 // column vector. It accepts row or column vectors indifferently, virtually
 // treating all of them as column vectors.
-func ConcatV[T float.DType](vs ...Matrix) *Dense[T] {
-	size := 0
-	for _, v := range vs {
-		if !IsVector(v) {
-			panic("mat: expected vector")
-		}
-		size += v.Size()
-	}
-	// Note: Consider that for performance optimization, it's not necessary to initialize the underlying slice to zero.
-	out := makeDense[T](malloc[T](size), size, 1)
-	data := out.data[:0] // convenient for using append below
-	for _, v := range vs {
-		data = append(data, Data[T](v)...)
-	}
-	out.data = data
-	return out
-}
+func ConcatV[T float.DType](vs ...Matrix) *Dense[T] { _ = "STUB: not implemented"; return nil }
+
+// Note: Consider that for performance optimization, it's not necessary to initialize the underlying slice to zero.
+
+// convenient for using append below
 
 // Stack stacks two or more vectors of the same size on top of each other,
 // creating a new Dense matrix where each row contains the data of each
 // input vector.
 // It accepts row or column vectors indifferently, virtually treating all of
 // them as row vectors.
-func Stack[T float.DType](vs ...Matrix) *Dense[T] {
-	if len(vs) == 0 {
-		return makeDense[T](malloc[T](0), 0, 0)
-	}
-	cols := vs[0].Size()
-	// Note: Consider that for performance optimization, it's not necessary to initialize the underlying slice to zero.
-	out := makeDense[T](malloc[T](len(vs)*cols), len(vs), cols)
-	data := out.data
-	for i, v := range vs {
-		if !IsVector(v) {
-			panic("mat: expected vector")
-		}
-		if v.Size() != cols {
-			panic("mat: all vectors must have the same size")
-		}
-		offset := i * cols
-		copy(data[offset:offset+cols], Data[T](v))
-	}
-	return out
-}
+func Stack[T float.DType](vs ...Matrix) *Dense[T] { _ = "STUB: not implemented"; return nil }
+
+// Note: Consider that for performance optimization, it's not necessary to initialize the underlying slice to zero.
 
 // Equal reports whether matrices a and b have the same shape and elements.
-func Equal(a, b Tensor) bool {
-	return areSlicesEqual(a.Shape(), b.Shape()) && a.Data().Equals(b.Data())
-}
+func Equal(a, b Tensor) bool { _ = "STUB: not implemented"; return false }
 
 // InDelta reports whether matrices a and b have the same shape and
 // all elements at the same positions are within delta.
-func InDelta(a, b Matrix, delta float64) bool {
-	return areSlicesEqual(a.Shape(), b.Shape()) && a.Data().InDelta(b.Data(), delta)
-}
+func InDelta(a, b Matrix, delta float64) bool { _ = "STUB: not implemented"; return false }
 
-func float32Data(m Matrix) []float32 {
-	if d, ok := m.(*Dense[float32]); ok {
-		return d.data
-	}
-	return m.Data().F32()
-}
+func float32Data(m Matrix) []float32 { _ = "STUB: not implemented"; return nil }
 
-func float64Data(m Matrix) []float64 {
-	if d, ok := m.(*Dense[float64]); ok {
-		return d.data
-	}
-	return m.Data().F64()
-}
+func float64Data(m Matrix) []float64 { _ = "STUB: not implemented"; return nil }

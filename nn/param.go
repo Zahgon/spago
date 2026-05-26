@@ -12,25 +12,9 @@ type Param struct {
 }
 
 // NewParam returns a new param.
-func NewParam(value mat.Matrix) *Param {
-	if value == nil {
-		panic("nn: cannot create a new param with a nil value")
-	}
-	p := &Param{
-		Matrix: value.Clone(),
-		State:  nil,
-	}
-	p.SetRequiresGrad(true)
-	return p
-}
+func NewParam(value mat.Matrix) *Param { _ = "STUB: not implemented"; return nil }
 
 // WithGrad sets whether the param requires gradients (default true)
-func (p *Param) WithGrad(value bool) *Param {
-	p.SetRequiresGrad(value)
-	return p
-}
+func (p *Param) WithGrad(value bool) *Param { _ = "STUB: not implemented"; return nil }
 
-func (p *Param) ReplaceValue(value mat.Matrix) {
-	p.Matrix = value
-	p.State = nil
-}
+func (p *Param) ReplaceValue(value mat.Matrix) { _ = "STUB: not implemented"; return }

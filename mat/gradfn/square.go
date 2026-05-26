@@ -12,8 +12,4 @@ type Square[O mat.Tensor] struct {
 }
 
 // NewSquare returns a new Square Function.
-func NewSquare[O mat.Tensor](x O) *Square[O] {
-	return &Square[O]{
-		Prod: &Prod[O]{x1: x, x2: x},
-	}
-}
+func NewSquare[O mat.Tensor](x O) *Square[O] { _ = "STUB: not implemented"; return nil }

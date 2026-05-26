@@ -20,13 +20,9 @@ const (
 )
 
 func doinit() {
+	_ = "STUB: not implemented"
 	// HWCAP2 feature bits
-	PPC64.IsPOWER8 = isSet(hwCap2, _PPC_FEATURE2_ARCH_2_07)
-	PPC64.IsPOWER9 = isSet(hwCap2, _PPC_FEATURE2_ARCH_3_00)
-	PPC64.HasDARN = isSet(hwCap2, _PPC_FEATURE2_DARN)
-	PPC64.HasSCV = isSet(hwCap2, _PPC_FEATURE2_SCV)
+	return
 }
 
-func isSet(hwc uint, value uint) bool {
-	return hwc&value != 0
-}
+func isSet(hwc uint, value uint) bool { _ = "STUB: not implemented"; return false }

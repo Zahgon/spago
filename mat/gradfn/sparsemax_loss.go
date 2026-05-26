@@ -5,8 +5,6 @@
 package gradfn
 
 import (
-	"math"
-
 	"github.com/nlpodyssey/spago/mat"
 )
 
@@ -18,53 +16,16 @@ type SparseMaxLoss[O mat.Tensor] struct {
 }
 
 // NewSparseMaxLoss returns a new SparseMaxLoss Function.
-func NewSparseMaxLoss[O mat.Tensor](x O) *SparseMaxLoss[O] {
-	return &SparseMaxLoss[O]{
-		x: x,
-	}
-}
+func NewSparseMaxLoss[O mat.Tensor](x O) *SparseMaxLoss[O] { _ = "STUB: not implemented"; return nil }
 
 // Operands returns the list of operands.
-func (r *SparseMaxLoss[O]) Operands() []mat.Tensor {
-	return []mat.Tensor{r.x}
-}
+func (r *SparseMaxLoss[O]) Operands() []mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 // Forward computes the output of the function.
 func (r *SparseMaxLoss[O]) Forward() (mat.Tensor, error) {
-	v := r.x.Value().(mat.Matrix).Clone()
-
-	zs, cumSumInput, bounds, tau := sparseMaxCommon(v)
-
-	tauSquared := tau * tau
-	cumSumInputData := cumSumInput.Data().F64()
-
-	var regTerm float64
-	for i, zsv := range zs.Data().F64() {
-		if bounds[i] > cumSumInputData[i] {
-			regTerm += zsv*zsv - tauSquared
-		}
-	}
-
-	regTerm = regTerm*0.5 + 0.5
-	v.SubScalarInPlace(regTerm)
-
-	r.y = v
-	r.tau = tau
-	return v, nil
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor), nil
 }
 
 // Backward computes the backward pass.
-func (r *SparseMaxLoss[O]) Backward(gy mat.Tensor) error {
-	if r.x.RequiresGrad() {
-		tau := r.tau
-		gySum := gy.(mat.Matrix).Sum().Item().F64()
-
-		sparseMax := r.x.Value().(mat.Matrix).Apply(func(_, _ int, v float64) float64 {
-			return math.Max(0, v-tau) * gySum
-		})
-
-		gx := gy.(mat.Matrix).Sub(sparseMax)
-		r.x.AccGrad(gx)
-	}
-	return nil
-}
+func (r *SparseMaxLoss[O]) Backward(gy mat.Tensor) error { _ = "STUB: not implemented"; return nil }

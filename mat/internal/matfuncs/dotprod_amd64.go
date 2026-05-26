@@ -19,11 +19,7 @@ func init() {
 }
 
 // DotProd32 returns the dot product between x1 and x2 (32 bits).
-func DotProd32(x1, x2 []float32) float32 {
-	return dotProd32(x1, x2)
-}
+func DotProd32(x1, x2 []float32) float32 { _ = "STUB: not implemented"; return 0 }
 
 // DotProd64 returns the dot product between x1 and x2 (64 bits).
-func DotProd64(x1, x2 []float64) float64 {
-	return dotProd64(x1, x2)
-}
+func DotProd64(x1, x2 []float64) float64 { _ = "STUB: not implemented"; return 0 }

@@ -19,11 +19,7 @@ func init() {
 }
 
 // MulConst32 multiplies each element of x by a constant value c, storing the result in y (32 bits).
-func MulConst32(c float32, x, y []float32) {
-	mulConst32(c, x, y)
-}
+func MulConst32(c float32, x, y []float32) { _ = "STUB: not implemented"; return }
 
 // MulConst64 multiplies each element of x by a constant value c, storing the result in y (64 bits).
-func MulConst64(c float64, x, y []float64) {
-	mulConst64(c, x, y)
-}
+func MulConst64(c float64, x, y []float64) { _ = "STUB: not implemented"; return }

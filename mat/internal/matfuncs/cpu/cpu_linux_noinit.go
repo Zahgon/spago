@@ -7,4 +7,4 @@
 
 package cpu
 
-func doinit() {}
+func doinit() { _ = "STUB: not implemented"; return }

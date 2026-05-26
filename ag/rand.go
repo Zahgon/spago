@@ -5,26 +5,16 @@
 package ag
 
 import (
-	"time"
-
 	"github.com/nlpodyssey/spago/mat/rand"
 )
 
 var globalGenerator = rand.NewLockedRand(12345)
 
 // Seed sets the seed for generating random numbers to the current time (converted to uint64).
-func Seed() *rand.LockedRand {
-	globalGenerator.Seed(uint64(time.Now().UnixNano()))
-	return globalGenerator
-}
+func Seed() *rand.LockedRand { _ = "STUB: not implemented"; return nil }
 
 // ManualSeed sets the seed for generating random numbers.
-func ManualSeed(seed uint64) *rand.LockedRand {
-	globalGenerator.Seed(seed)
-	return globalGenerator
-}
+func ManualSeed(seed uint64) *rand.LockedRand { _ = "STUB: not implemented"; return nil }
 
 // Rand returns the global random number generator.
-func Rand() *rand.LockedRand {
-	return globalGenerator
-}
+func Rand() *rand.LockedRand { _ = "STUB: not implemented"; return nil }

@@ -5,10 +5,6 @@
 package optimizers
 
 import (
-	"context"
-	"runtime"
-	"sync"
-
 	"github.com/nlpodyssey/spago/nn"
 )
 
@@ -27,52 +23,12 @@ type Optimizer struct {
 
 // New returns a new optimizer.
 func New(parameters nn.ParamChannelFunc, strategy OptimizationStrategy) *Optimizer {
-	return &Optimizer{
-		parameters: parameters,
-		strategy:   strategy,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Optimize performs the optimization of the parameters.
-func (o *Optimizer) Optimize() error {
-	var wg sync.WaitGroup
-	guard := make(chan struct{}, runtime.NumCPU()*2)
-	errCh := make(chan error, 1)
+func (o *Optimizer) Optimize() error { _ = "STUB: not implemented"; return nil }
 
-	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
-
-	for param := range o.parameters(ctx) {
-		select {
-		case err := <-errCh:
-			cancel()  // As soon as an error occurs, stop the iteration over parameters
-			wg.Wait() // Wait for running goroutines to finish
-			return err
-		default:
-			param := param
-			wg.Add(1)
-			guard <- struct{}{}
-			go func() {
-				defer wg.Done()
-				defer func() { <-guard }()
-				if !param.HasGrad() {
-					return
-				}
-				if err := o.strategy.OptimizeParams(param); err != nil {
-					select {
-					case errCh <- err:
-					default:
-					}
-				}
-			}()
-		}
-	}
-
-	close(errCh)
-
-	if err, ok := <-errCh; ok {
-		return err
-	}
-
-	return nil
-}
+// As soon as an error occurs, stop the iteration over parameters
+// Wait for running goroutines to finish

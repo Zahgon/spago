@@ -6,7 +6,6 @@ package rmsprop
 
 import (
 	"encoding/gob"
-	"fmt"
 
 	"github.com/nlpodyssey/spago/mat"
 	"github.com/nlpodyssey/spago/mat/float"
@@ -21,22 +20,10 @@ type Config struct {
 }
 
 // NewConfig returns a new RMSProp Config.
-func NewConfig(lr, epsilon, decay float64) Config {
-	return Config{
-		LR:      lr,
-		Epsilon: epsilon,
-		Decay:   decay,
-	}
-}
+func NewConfig(lr, epsilon, decay float64) Config { _ = "STUB: not implemented"; return *new(Config) }
 
 // NewDefaultConfig returns a new Config with generically reasonable default values.
-func NewDefaultConfig() Config {
-	return Config{
-		LR:      0.001,
-		Epsilon: 1e-08,
-		Decay:   0.95,
-	}
-}
+func NewDefaultConfig() Config { _ = "STUB: not implemented"; return *new(Config) }
 
 //var _ optimizers.Strategy = &RMSProp[float32]{}
 
@@ -50,9 +37,7 @@ type RMSProp[T float.DType] struct {
 }
 
 // New returns a new RMSProp optimizer, initialized according to the given configuration.
-func New[T float.DType](c Config) *RMSProp[T] {
-	return &RMSProp[T]{Config: c}
-}
+func New[T float.DType](c Config) *RMSProp[T] { _ = "STUB: not implemented"; return nil }
 
 type State struct {
 	V mat.Matrix // first moment vector
@@ -62,36 +47,11 @@ func init() {
 	gob.Register(&State{})
 }
 
-func (o *RMSProp[T]) newState(shape ...int) *State {
-	return &State{
-		V: mat.NewDense[T](mat.WithShape(shape...)),
-	}
-}
+func (o *RMSProp[T]) newState(shape ...int) *State { _ = "STUB: not implemented"; return nil }
 
 func (o *RMSProp[T]) calculateParamUpdate(grads mat.Matrix, state *State) mat.Matrix {
-	state.V.ProdScalarInPlace(o.Decay)
-	buf := grads.Prod(grads)
-	buf.ProdScalarInPlace(1.0 - o.Decay)
-	state.V.AddInPlace(buf)
-	buf2 := state.V.Sqrt()
-	buf2.AddScalarInPlace(o.Epsilon)
-	delta := grads.Div(buf2)
-	delta.ProdScalarInPlace(o.LR)
-	return delta
+	_ = "STUB: not implemented"
+	return *new(mat.Matrix)
 }
 
-func (o *RMSProp[T]) OptimizeParams(param *nn.Param) error {
-	if param.State == nil {
-		param.State = o.newState(param.Value().Shape()...)
-	}
-
-	state, ok := param.State.(*State)
-	if !ok {
-		return fmt.Errorf("unsupported state type: %T, expected %T", param.State, &State{})
-	}
-
-	param.SubInPlace(o.calculateParamUpdate(param.Grad().(mat.Matrix), state))
-	param.ZeroGrad()
-
-	return nil
-}
+func (o *RMSProp[T]) OptimizeParams(param *nn.Param) error { _ = "STUB: not implemented"; return nil }

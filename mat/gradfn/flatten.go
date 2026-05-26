@@ -5,8 +5,6 @@
 package gradfn
 
 import (
-	"fmt"
-
 	"github.com/nlpodyssey/spago/mat"
 )
 
@@ -16,30 +14,16 @@ type Flatten[O mat.Tensor] struct {
 }
 
 // NewFlatten returns a new Flatten Function.
-func NewFlatten[O mat.Tensor](x O) *Flatten[O] {
-	return &Flatten[O]{
-		x: x,
-	}
-}
+func NewFlatten[O mat.Tensor](x O) *Flatten[O] { _ = "STUB: not implemented"; return nil }
 
 // Operands returns the list of operands.
-func (r *Flatten[O]) Operands() []mat.Tensor {
-	return []mat.Tensor{r.x}
-}
+func (r *Flatten[O]) Operands() []mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 // Forward computes the output of the node.
 func (r *Flatten[O]) Forward() (mat.Tensor, error) {
-	return r.x.Value().(mat.Matrix).Flatten(), nil
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor), nil
 }
 
 // Backward computes the backward pass.
-func (r *Flatten[O]) Backward(gy mat.Tensor) error {
-	if !(mat.IsVector(gy) && r.x.Value().Size() == gy.Size()) {
-		return fmt.Errorf("fn: matrices have incompatible dimensions")
-	}
-	if r.x.RequiresGrad() {
-		gx := gy.(mat.Matrix).Reshape(r.x.Value().Shape()...)
-		r.x.AccGrad(gx)
-	}
-	return nil
-}
+func (r *Flatten[O]) Backward(gy mat.Tensor) error { _ = "STUB: not implemented"; return nil }

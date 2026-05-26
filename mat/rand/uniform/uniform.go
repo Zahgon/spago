@@ -18,14 +18,9 @@ type Uniform struct {
 
 // New returns a new Normal, initialized with the given min and max parameters.
 func New(min, max float64, generator *rand.LockedRand) *Uniform {
-	return &Uniform{
-		Min:       min,
-		Max:       max,
-		generator: generator,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Next returns a random sample drawn from the distribution.
-func (u Uniform) Next() float64 {
-	return u.generator.Float64()*(u.Max-u.Min) + u.Min
-}
+func (u Uniform) Next() float64 { _ = "STUB: not implemented"; return 0 }

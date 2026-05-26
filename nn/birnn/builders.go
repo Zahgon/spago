@@ -6,32 +6,22 @@ package birnn
 
 import (
 	"github.com/nlpodyssey/spago/mat/float"
-	"github.com/nlpodyssey/spago/nn/recurrent/gru"
-	"github.com/nlpodyssey/spago/nn/recurrent/lstm"
 )
 
 // NewBiLSTM returns a new Bidirectional LSTM Model.
 func NewBiLSTM[T float.DType](input, hidden int, merge MergeType) *Model {
-	return &Model{
-		Positive:  lstm.New[T](input, hidden),
-		Negative:  lstm.New[T](input, hidden),
-		MergeMode: merge,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // NewBiGRU returns a new Bidirectional GRU Model.
 func NewBiGRU[T float.DType](input, hidden int, merge MergeType) *Model {
-	return &Model{
-		Positive:  gru.New[T](input, hidden),
-		Negative:  gru.New[T](input, hidden),
-		MergeMode: merge,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // NewBiBiLSTM returns a new Bidirectional BiLSTM Model.
 func NewBiBiLSTM[T float.DType](input, hidden int, merge MergeType) []*Model {
-	return []*Model{
-		NewBiLSTM[T](input, hidden, Concat),
-		NewBiLSTM[T](hidden*2, hidden, merge),
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

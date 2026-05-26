@@ -6,7 +6,6 @@ package adagrad
 
 import (
 	"encoding/gob"
-	"fmt"
 
 	"github.com/nlpodyssey/spago/mat"
 	"github.com/nlpodyssey/spago/mat/float"
@@ -20,12 +19,7 @@ type Config struct {
 }
 
 // NewConfig returns a new AdaGrad Config.
-func NewConfig(lr, epsilon float64) Config {
-	return Config{
-		LR:      lr,
-		Epsilon: epsilon,
-	}
-}
+func NewConfig(lr, epsilon float64) Config { _ = "STUB: not implemented"; return *new(Config) }
 
 type State struct {
 	M mat.Matrix // sum of squares of historical gradients
@@ -36,12 +30,7 @@ func init() {
 }
 
 // NewDefaultConfig returns a new Config with generically reasonable default values.
-func NewDefaultConfig() Config {
-	return Config{
-		LR:      0.01,
-		Epsilon: 1.0e-8,
-	}
-}
+func NewDefaultConfig() Config { _ = "STUB: not implemented"; return *new(Config) }
 
 // AdaGrad assigns a different learning rate to each parameter using the sum of squares of its all historical gradients.
 // References
@@ -53,37 +42,15 @@ type AdaGrad[T float.DType] struct {
 }
 
 // New returns a new AdaGrad optimizer, initialized according to the given configuration.
-func New[T float.DType](c Config) *AdaGrad[T] {
-	return &AdaGrad[T]{
-		Config: c,
-	}
-}
+func New[T float.DType](c Config) *AdaGrad[T] { _ = "STUB: not implemented"; return nil }
 
-func (o *AdaGrad[T]) newState(shape ...int) *State {
-	return &State{
-		M: mat.NewDense[T](mat.WithShape(shape...)),
-	}
-}
+func (o *AdaGrad[T]) newState(shape ...int) *State { _ = "STUB: not implemented"; return nil }
 
 // m = m + grads*grads
 // delta = (grads / (sqrt(m) + eps)) * lr
 func (o *AdaGrad[T]) calculateParamUpdate(grads mat.Matrix, state *State) mat.Matrix {
-	state.M.AddInPlace(grads.Prod(grads))
-	return grads.Div(state.M.Sqrt().AddScalarInPlace(o.Epsilon)).ProdScalarInPlace(o.LR)
+	_ = "STUB: not implemented"
+	return *new(mat.Matrix)
 }
 
-func (o *AdaGrad[T]) OptimizeParams(param *nn.Param) error {
-	if param.State == nil {
-		param.State = o.newState(param.Value().Shape()...)
-	}
-
-	state, ok := param.State.(*State)
-	if !ok {
-		return fmt.Errorf("unsupported state type: %T, expected %T", param.State, &State{})
-	}
-
-	param.SubInPlace(o.calculateParamUpdate(param.Grad().(mat.Matrix), state))
-	param.ZeroGrad()
-
-	return nil
-}
+func (o *AdaGrad[T]) OptimizeParams(param *nn.Param) error { _ = "STUB: not implemented"; return nil }

@@ -12,22 +12,14 @@ package asm32
 //	for i, v := range x {
 //		y[i] += alpha * v
 //	}
-func AxpyUnitary(alpha float32, x, y []float32) {
-	for i, v := range x {
-		y[i] += alpha * v
-	}
-}
+func AxpyUnitary(alpha float32, x, y []float32) { _ = "STUB: not implemented"; return }
 
 // AxpyUnitaryTo is
 //
 //	for i, v := range x {
 //		dst[i] = alpha*v + y[i]
 //	}
-func AxpyUnitaryTo(dst []float32, alpha float32, x, y []float32) {
-	for i, v := range x {
-		dst[i] = alpha*v + y[i]
-	}
-}
+func AxpyUnitaryTo(dst []float32, alpha float32, x, y []float32) { _ = "STUB: not implemented"; return }
 
 // AxpyInc is
 //
@@ -37,11 +29,8 @@ func AxpyUnitaryTo(dst []float32, alpha float32, x, y []float32) {
 //		iy += incY
 //	}
 func AxpyInc(alpha float32, x, y []float32, n, incX, incY, ix, iy uintptr) {
-	for i := 0; i < int(n); i++ {
-		y[iy] += alpha * x[ix]
-		ix += incX
-		iy += incY
-	}
+	_ = "STUB: not implemented"
+	return
 }
 
 // AxpyIncTo is
@@ -53,12 +42,8 @@ func AxpyInc(alpha float32, x, y []float32, n, incX, incY, ix, iy uintptr) {
 //		idst += incDst
 //	}
 func AxpyIncTo(dst []float32, incDst, idst uintptr, alpha float32, x, y []float32, n, incX, incY, ix, iy uintptr) {
-	for i := 0; i < int(n); i++ {
-		dst[idst] = alpha*x[ix] + y[iy]
-		ix += incX
-		iy += incY
-		idst += incDst
-	}
+	_ = "STUB: not implemented"
+	return
 }
 
 // DotUnitary is
@@ -67,12 +52,7 @@ func AxpyIncTo(dst []float32, incDst, idst uintptr, alpha float32, x, y []float3
 //		sum += y[i] * v
 //	}
 //	return sum
-func DotUnitary(x, y []float32) (sum float32) {
-	for i, v := range x {
-		sum += y[i] * v
-	}
-	return sum
-}
+func DotUnitary(x, y []float32) (sum float32) { _ = "STUB: not implemented"; return 0 }
 
 // DotInc is
 //
@@ -83,12 +63,8 @@ func DotUnitary(x, y []float32) (sum float32) {
 //	}
 //	return sum
 func DotInc(x, y []float32, n, incX, incY, ix, iy uintptr) (sum float32) {
-	for i := 0; i < int(n); i++ {
-		sum += y[iy] * x[ix]
-		ix += incX
-		iy += incY
-	}
-	return sum
+	_ = "STUB: not implemented"
+	return 0
 }
 
 // DdotUnitary is
@@ -97,12 +73,7 @@ func DotInc(x, y []float32, n, incX, incY, ix, iy uintptr) (sum float32) {
 //		sum += float64(y[i]) * float64(v)
 //	}
 //	return
-func DdotUnitary(x, y []float32) (sum float64) {
-	for i, v := range x {
-		sum += float64(y[i]) * float64(v)
-	}
-	return
-}
+func DdotUnitary(x, y []float32) (sum float64) { _ = "STUB: not implemented"; return 0 }
 
 // DdotInc is
 //
@@ -113,12 +84,8 @@ func DdotUnitary(x, y []float32) (sum float64) {
 //	}
 //	return
 func DdotInc(x, y []float32, n, incX, incY, ix, iy uintptr) (sum float64) {
-	for i := 0; i < int(n); i++ {
-		sum += float64(y[iy]) * float64(x[ix])
-		ix += incX
-		iy += incY
-	}
-	return
+	_ = "STUB: not implemented"
+	return 0
 }
 
 // Sum is
@@ -128,10 +95,4 @@ func DdotInc(x, y []float32, n, incX, incY, ix, iy uintptr) (sum float64) {
 //		sum += v
 //	}
 //	return sum
-func Sum(x []float32) float32 {
-	var sum float32
-	for _, v := range x {
-		sum += v
-	}
-	return sum
-}
+func Sum(x []float32) float32 { _ = "STUB: not implemented"; return 0 }

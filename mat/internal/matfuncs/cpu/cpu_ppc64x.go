@@ -9,9 +9,4 @@ package cpu
 
 const cacheLineSize = 128
 
-func initOptions() {
-	options = []option{
-		{Name: "darn", Feature: &PPC64.HasDARN},
-		{Name: "scv", Feature: &PPC64.HasSCV},
-	}
-}
+func initOptions() { _ = "STUB: not implemented"; return }

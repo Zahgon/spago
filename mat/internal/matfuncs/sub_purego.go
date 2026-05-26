@@ -8,21 +8,12 @@ package matfuncs
 
 // Sub32 subtracts x2 from x1, element-wise, storing the result in y (32 bits).
 func Sub32(x1, x2, y []float32) {
-	sub(x1, x2, y)
+	_ = "STUB: not implemented"
+
+	// Sub64 subtracts x2 from x1, element-wise, storing the result in y (64 bits).
+	return
 }
 
-// Sub64 subtracts x2 from x1, element-wise, storing the result in y (64 bits).
-func Sub64(x1, x2, y []float64) {
-	sub(x1, x2, y)
-}
+func Sub64(x1, x2, y []float64) { _ = "STUB: not implemented"; return }
 
-func sub[F float32 | float64](x1, x2, y []F) {
-	if len(x1) == 0 {
-		return
-	}
-	_ = y[len(x1)-1]
-	_ = x2[len(x1)-1]
-	for i, x1v := range x1 {
-		y[i] = x1v - x2[i]
-	}
-}
+func sub[F float32 | float64](x1, x2, y []F) { _ = "STUB: not implemented"; return }

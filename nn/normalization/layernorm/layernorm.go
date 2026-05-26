@@ -11,7 +11,6 @@ package layernorm
 import (
 	"encoding/gob"
 
-	"github.com/nlpodyssey/spago/ag"
 	"github.com/nlpodyssey/spago/mat"
 	"github.com/nlpodyssey/spago/mat/float"
 	"github.com/nlpodyssey/spago/nn"
@@ -32,26 +31,8 @@ func init() {
 }
 
 // New returns a new model with parameters initialized to zeros.
-func New[T float.DType](size int, eps float64) *Model {
-	return &Model{
-		W:   nn.NewParam(mat.NewDense[T](mat.WithShape(size))),
-		B:   nn.NewParam(mat.NewDense[T](mat.WithShape(size))),
-		Eps: nn.Buf(mat.Scalar(T(eps))),
-	}
-}
+func New[T float.DType](size int, eps float64) *Model { _ = "STUB: not implemented"; return nil }
 
 // Forward performs the forward step for each input node and returns the result.
 // y = (x - E\[x\]) / sqrt(VAR\[x\] + [EPS]) * g + b
-func (m *Model) Forward(xs ...mat.Tensor) []mat.Tensor {
-	if len(xs) == 0 {
-		return nil
-	}
-	out := make([]mat.Tensor, len(xs))
-	for i, x := range xs {
-		mean := ag.ReduceMean(x)
-		dev := ag.SubScalar(x, mean)
-		stdDev := ag.Sqrt(ag.Add(ag.ReduceMean(ag.Square(dev)), m.Eps))
-		out[i] = ag.Add(ag.Prod(ag.DivScalar(dev, stdDev), m.W), m.B)
-	}
-	return out
-}
+func (m *Model) Forward(xs ...mat.Tensor) []mat.Tensor { _ = "STUB: not implemented"; return nil }

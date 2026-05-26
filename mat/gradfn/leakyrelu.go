@@ -5,8 +5,6 @@
 package gradfn
 
 import (
-	"fmt"
-
 	"github.com/nlpodyssey/spago/mat"
 )
 
@@ -18,32 +16,16 @@ type LeakyReLU[O mat.Tensor] struct {
 }
 
 // NewLeakyReLU returns a new LeakyReLU Function.
-func NewLeakyReLU[O mat.Tensor](x, alpha O) *LeakyReLU[O] {
-	return &LeakyReLU[O]{
-		x:     x,
-		alpha: alpha,
-	}
-}
+func NewLeakyReLU[O mat.Tensor](x, alpha O) *LeakyReLU[O] { _ = "STUB: not implemented"; return nil }
 
 // Operands returns the list of operands.
-func (r *LeakyReLU[O]) Operands() []mat.Tensor {
-	return []mat.Tensor{r.x, r.alpha}
-}
+func (r *LeakyReLU[O]) Operands() []mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 // Forward computes the output of the function.
 func (r *LeakyReLU[O]) Forward() (mat.Tensor, error) {
-	return r.x.Value().(mat.Matrix).ApplyWithAlpha(leakyReLU, r.alpha.Value().Item().F64()), nil
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor), nil
 }
 
 // Backward computes the backward pass.
-func (r *LeakyReLU[O]) Backward(gy mat.Tensor) error {
-	if !mat.SameDims(r.x.Value(), gy) {
-		return fmt.Errorf("fn: matrices have incompatible dimensions")
-	}
-	if r.x.RequiresGrad() {
-		gx := r.x.Value().(mat.Matrix).ApplyWithAlpha(leakyReLUDeriv, r.alpha.Value().Item().F64())
-		gx.ProdInPlace(gy.(mat.Matrix))
-		r.x.AccGrad(gx)
-	}
-	return nil
-}
+func (r *LeakyReLU[O]) Backward(gy mat.Tensor) error { _ = "STUB: not implemented"; return nil }

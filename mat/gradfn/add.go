@@ -5,8 +5,6 @@
 package gradfn
 
 import (
-	"fmt"
-
 	"github.com/nlpodyssey/spago/mat"
 )
 
@@ -18,40 +16,16 @@ type Add[O mat.Tensor] struct {
 }
 
 // NewAdd returns a new Add Function.
-func NewAdd[O mat.Tensor](x1, x2 O) *Add[O] {
-	return &Add[O]{
-		x1: x1,
-		x2: x2,
-	}
-}
+func NewAdd[O mat.Tensor](x1, x2 O) *Add[O] { _ = "STUB: not implemented"; return nil }
 
 // Operands returns the list of operands.
-func (r *Add[O]) Operands() []mat.Tensor {
-	return []mat.Tensor{r.x1, r.x2}
-}
+func (r *Add[O]) Operands() []mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 // Forward computes the output of the function.
 func (r *Add[O]) Forward() (mat.Tensor, error) {
-	x1v := r.x1.Value().(mat.Matrix)
-	x2v := r.x2.Value().(mat.Matrix)
-	return x1v.Add(x2v), nil
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor), nil
 }
 
 // Backward computes the backward pass.
-func (r *Add[O]) Backward(gy mat.Tensor) error {
-	if r.x1.RequiresGrad() {
-		x1v := r.x1.Value()
-		if !mat.SameDims(x1v.(mat.Matrix), gy.(mat.Matrix)) {
-			return fmt.Errorf("fn: matrices have incompatible dimensions")
-		}
-		r.x1.AccGrad(gy)
-	}
-	if r.x2.RequiresGrad() {
-		x2v := r.x2.Value()
-		if !mat.SameDims(x2v.(mat.Matrix), gy.(mat.Matrix)) {
-			return fmt.Errorf("fn: matrices have incompatible dimensions")
-		}
-		r.x2.AccGrad(gy)
-	}
-	return nil
-}
+func (r *Add[O]) Backward(gy mat.Tensor) error { _ = "STUB: not implemented"; return nil }

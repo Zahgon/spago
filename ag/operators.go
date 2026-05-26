@@ -5,540 +5,333 @@
 package ag
 
 import (
-	"fmt"
-	"math"
-
 	"github.com/nlpodyssey/spago/mat"
-	"github.com/nlpodyssey/spago/mat/gradfn"
 )
 
 // Abs returns a new operator node as a result of the `Abs` function.
-func Abs(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewAbs(x)).Run()
-}
+func Abs(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Add returns a new operator node as a result of the gradfn.Add function.
 // As special case, the first node may be null.
 // This help to keep the code as concise as possible e.g. during accumulation.
 func Add(x1 mat.Tensor, x2 mat.Tensor) mat.Tensor {
-	if x1 == nil {
-		return Copy(x2) // return a copy of `x2` as is
-	}
-	return NewOperator(gradfn.NewAdd(x1, x2)).Run(true)
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor)
 }
 
+// return a copy of `x2` as is
+
 // AddScalar returns a new operator node as a result of the gradfn.AddScalar function.
-func AddScalar(x1, x2 mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewAddScalar(x1, x2)).Run()
-}
+func AddScalar(x1, x2 mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Affine returns a new operator node as a result of the gradfn.Affine function.
 func Affine(b, w1, x1 mat.Tensor, wxPairs ...mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewAffine(b, w1, x1, wxPairs...)).Run(true)
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor)
 }
 
 // AppendRows returns a new operator node as a result of the gradfn.AppendRows function.
 func AppendRows(x mat.Tensor, vs ...mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewAppendRows(x, vs...)).Run()
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor)
 }
 
 // At returns a new operator node as a result of the gradfn.At function.
 func At(x mat.Tensor, indices ...int) mat.Tensor {
-	return NewOperator(gradfn.NewAt(x, indices...)).Run()
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor)
 }
 
 // CELU returns a new operator node as a result of the gradfn.CELU function.
-func CELU(x, alpha mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewCELU(x, alpha)).Run()
-}
+func CELU(x, alpha mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // ColView returns a new operator node as a result of the gradfn.ColView function.
 func ColView(x mat.Tensor, column int) mat.Tensor {
-	return NewOperator(gradfn.NewColView(x, column)).Run()
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor)
 }
 
 // Concat returns a new operator node as a result of the gradfn.Concat function.
-func Concat(xs ...mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewConcat(xs)).Run()
-}
+func Concat(xs ...mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Cos returns a new operator node as a result of the `Cos` function.
-func Cos(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewCos(x)).Run()
-}
+func Cos(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Div returns a new operator node as a result of the gradfn.Div function.
-func Div(x1, x2 mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewDiv(x1, x2)).Run()
-}
+func Div(x1, x2 mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // DivScalar returns a new operator node as a result of the gradfn.DivScalar function.
-func DivScalar(x1, x2 mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewDivScalar(x1, x2)).Run()
-}
+func DivScalar(x1, x2 mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Dot returns a new operator node as a result of the gradfn.Dot function.
-func Dot(x1, x2 mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewDot(x1, x2)).Run()
-}
+func Dot(x1, x2 mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // DropoutFunc returns a function to create a Dropout operator working with the given dropout probability.
-func DropoutFunc(p float64) func(x mat.Tensor) mat.Tensor {
-	return func(x mat.Tensor) mat.Tensor {
-		if p == 0.0 {
-			return x
-		}
-		return NewOperator(gradfn.NewDropout(x, p, globalGenerator)).Run()
-	}
-}
+func DropoutFunc(p float64) func(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 // Dropout returns a new operator node as a result of the gradfn.Dropout function.
 // If the dropout probability is zero, the operator will not be created,
 // so the input itself is returned directly.
 func Dropout(x mat.Tensor, p float64) mat.Tensor {
-	if p == 0.0 {
-		return x
-	}
-	return NewOperator(gradfn.NewDropout(x, p, globalGenerator)).Run()
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor)
 }
 
 // ELU returns a new operator node as a result of the gradfn.ELU function.
-func ELU(x, alpha mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewELU(x, alpha)).Run()
-}
+func ELU(x, alpha mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Exp returns a new operator node as a result of the `Exp` function.
-func Exp(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewExp(x)).Run()
-}
+func Exp(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Flatten returns a new operator node as a result of the gradfn.Flatten function.
-func Flatten(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewFlatten(x)).Run()
-}
+func Flatten(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // GELU returns a new operator node as a result of the gradfn.GELU function.
-func GELU(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewGELU(x)).Run()
-}
+func GELU(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // HardSigmoid returns a new operator node as a result of the `HardSigmoid` function.
-func HardSigmoid(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewHardSigmoid(x)).Run()
-}
+func HardSigmoid(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // HardTanh returns a new operator node as a result of the `HardTanh` function.
-func HardTanh(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewHardTanh(x)).Run()
-}
+func HardTanh(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Copy returns a new operator node as a result of the gradfn.Copy function.
-func Copy(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewCopy(x)).Run()
-}
+func Copy(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // LeakyReLU returns a new operator node as a result of the gradfn.LeakyReLU function.
-func LeakyReLU(x, alpha mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewLeakyReLU(x, alpha)).Run()
-}
+func LeakyReLU(x, alpha mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Log returns a new operator node as a result of the `Log` function.
-func Log(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewLog(x)).Run()
-}
+func Log(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Max returns a new operator node as a result of the gradfn.Max function.
-func Max(x1, x2 mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewMax(x1, x2)).Run()
-}
+func Max(x1, x2 mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // MaxPooling returns a new operator node as a result of the gradfn.MaxPooling function.
 func MaxPooling(x mat.Tensor, rows, columns int) mat.Tensor {
-	return NewOperator(gradfn.NewMaxPooling(x, rows, columns)).Run()
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor)
 }
 
 // Min returns a new operator node as a result of the gradfn.Min function.
-func Min(x1, x2 mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewMin(x1, x2)).Run()
-}
+func Min(x1, x2 mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Mish returns a new operator node as a result of the `Mish` function.
-func Mish(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewMish(x)).Run()
-}
+func Mish(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Mul returns a new operator node as a result of the gradfn.Mul function.
-func Mul(x1, x2 mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewMul(x1, x2)).Run()
-}
+func Mul(x1, x2 mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
-func MulT(x1, x2 mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewMulT(x1, x2)).Run(true)
-}
+func MulT(x1, x2 mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Neg returns a new operator node as a result of the `Neg` function.
-func Neg(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewNeg(x)).Run()
-}
+func Neg(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Pow returns a new operator node as a result of the gradfn.Pow function.
 func Pow(x mat.Tensor, power float64) mat.Tensor {
-	return NewOperator(gradfn.NewPow(x, power)).Run()
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor)
 }
 
 // Prod returns a new operator node as a result of the gradfn.Prod function.
-func Prod(x1, x2 mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewProd(x1, x2)).Run()
-}
+func Prod(x1, x2 mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // ProdScalar returns a new operator node as a result of the gradfn.ProdScalar function.
-func ProdScalar(x1, x2 mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewProdScalar(x1, x2)).Run(true)
-}
+func ProdScalar(x1, x2 mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Reciprocal returns a new operator node as a result of the `Reciprocal` function.
-func Reciprocal(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewReciprocal(x)).Run()
-}
+func Reciprocal(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // ReduceMax returns a new operator node as a result of the gradfn.ReduceMax function.
-func ReduceMax(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewReduceMax(x)).Run()
-}
+func ReduceMax(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // ReduceMean returns a new operator node as a result of the gradfn.ReduceMean function.
-func ReduceMean(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewReduceMean(x)).Run()
-}
+func ReduceMean(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // ReduceSum returns a new operator node as a result of the gradfn.ReduceSum function.
-func ReduceSum(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewReduceSum(x)).Run()
-}
+func ReduceSum(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // ReLU returns a new operator node as a result of the `ReLU` function.
-func ReLU(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewReLU(x)).Run(true)
-}
+func ReLU(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Reshape returns a new operator node as a result of the gradfn.Reshape function.
 func Reshape(x mat.Tensor, rows, columns int) mat.Tensor {
-	return NewOperator(gradfn.NewReshape(x, rows, columns)).Run()
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor)
 }
 
 // ReverseSub returns a new operator node as a result of the fn.ReverseSub function.
-func ReverseSub(x1, x2 mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewReverseSubScalar(x1, x2)).Run()
-}
+func ReverseSub(x1, x2 mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // ReverseSubOne returns a new operator node as a result of applying reverse subtraction with 1.0 to the input using the fn.ReverseSub function.
-func ReverseSubOne(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewReverseSubScalar(x, mat.Tensor(mat.Scalar(1.0)))).Run()
-}
+func ReverseSubOne(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // RotateR performs the right circular shift.
 // `i` is the number of places by which the elements are shifted.
-func RotateR(x mat.Tensor, i int) mat.Tensor {
-	return NewOperator(gradfn.NewRotateR(x, i)).Run()
-}
+func RotateR(x mat.Tensor, i int) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // RowView returns a new operator node as a result of the gradfn.RowView function.
-func RowView(x mat.Tensor, row int) mat.Tensor {
-	return NewOperator(gradfn.NewRowView(x, row)).Run()
-}
+func RowView(x mat.Tensor, row int) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // ScalarMax returns a new operator node as a result of the gradfn.ScalarMax function.
-func ScalarMax(xs []mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewScalarMax(xs)).Run()
-}
+func ScalarMax(xs []mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // SELU returns a new operator node as a result of the gradfn.SELU function.
 func SELU(x, alpha mat.Tensor, scale mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewSELU(x, alpha, scale)).Run()
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor)
 }
 
 // Sigmoid returns a new operator node as a result of the `Sigmoid` function.
-func Sigmoid(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewSigmoid(x)).Run()
-}
+func Sigmoid(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // SiLU returns a new operator node as a result of the fn.SiLU function.
-func SiLU(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewSiLU(x)).Run()
-}
+func SiLU(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Sin returns a new operator node as a result of the `Sin` function.
-func Sin(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewSin(x)).Run()
-}
+func Sin(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Slice returns a new operator node as a result of the gradfn.Slice function.
 func Slice(x mat.Tensor, fromRow, fromCol, toRow, toCol int) mat.Tensor {
-	return NewOperator(gradfn.NewSlice(x, fromRow, fromCol, toRow, toCol)).Run()
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor)
 }
 
 // Softmax returns a new operator node as a result of the gradfn.Softmax function.
-func Softmax(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewSoftmax(x)).Run()
-}
+func Softmax(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // SoftPlus returns a new operator node as a result of the gradfn.SoftPlus function.
 func SoftPlus(x, beta, threshold mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewSoftPlus(x, beta, threshold)).Run()
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor)
 }
 
 // SoftShrink returns a new operator node as a result of the gradfn.SoftShrink function.
 func SoftShrink(x, lambda mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewSoftShrink(x, lambda)).Run()
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor)
 }
 
 // Softsign returns a new operator node as a result of the `SoftSign` function.
-func Softsign(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewSoftsign(x)).Run()
-}
+func Softsign(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // SparseMax returns a new operator node as a result of the gradfn.SparseMax function.
-func SparseMax(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewSparseMax(x)).Run()
-}
+func SparseMax(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // SparseMaxLoss returns a new operator node as a result of the gradfn.SparseMaxLoss function.
-func SparseMaxLoss(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewSparseMaxLoss(x)).Run()
-}
+func SparseMaxLoss(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Sqrt returns a new operator node as a result of the `Sqrt` function.
-func Sqrt(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewSqrt(x)).Run()
-}
+func Sqrt(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Square returns a new operator node as a result of the gradfn.Prod(x, x) function.
-func Square(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewSquare(x)).Run()
-}
+func Square(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Stack returns a new operator node as a result of the gradfn.Stack function.
-func Stack(xs ...mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewStack(xs)).Run()
-}
+func Stack(xs ...mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Sub returns a new operator node as a result of the gradfn.Sub function.
-func Sub(x1, x2 mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewSub(x1, x2)).Run()
-}
+func Sub(x1, x2 mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // SubScalar returns a new operator node as a result of the gradfn.SubScalar function.
-func SubScalar(x1, x2 mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewSubScalar(x1, x2)).Run()
-}
+func SubScalar(x1, x2 mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Swish returns a new operator node as a result of the gradfn.Swish function.
-func Swish(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewSwish(x)).Run()
-}
+func Swish(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // SwishB returns a new operator node as a result of the gradfn.SwishB function.
-func SwishB(x, beta mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewSwishB(x, beta)).Run()
-}
+func SwishB(x, beta mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // T returns a new operator node as a result of the fn.T function.
-func T(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewTranspose(x)).Run()
-}
+func T(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Tan returns a new operator node as a result of the `Tan` function.
-func Tan(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewTan(x)).Run()
-}
+func Tan(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Tanh returns a new operator node as a result of the `Tanh` function.
-func Tanh(x mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewTanh(x)).Run()
-}
+func Tanh(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Threshold returns a new operator node as a result of the gradfn.Threshold function.
 func Threshold(x, threshold, k mat.Tensor) mat.Tensor {
-	return NewOperator(gradfn.NewThreshold(x, threshold, k)).Run()
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor)
 }
 
 // Map returns a transformed version of xs with all its components modified according to the mapping function.
 // It is useful for applying an operator to a sequence of nodes. Keep in mind that using this function has an overhead
 // because of the callback, however insignificant compared to mathematical computations.
 func Map(mapping func(mat.Tensor) mat.Tensor, xs []mat.Tensor) []mat.Tensor {
-	ys := make([]mat.Tensor, len(xs))
-	for i, x := range xs {
-		ys[i] = mapping(x)
-	}
-	return ys
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Map2 takes two arguments and applies a mapping function (that must take two arguments) to the items from the two node-slices in parallel.
 // It panics if one slice is shorter than the other.
 func Map2(mapping func(a mat.Tensor, b mat.Tensor) mat.Tensor, xs1 []mat.Tensor, xs2 []mat.Tensor) []mat.Tensor {
-	if len(xs1) != len(xs2) {
-		panic(fmt.Sprintf("ag: arguments must have the same size (%d != %d)", len(xs1), len(xs2)))
-	}
-	ys := make([]mat.Tensor, len(xs1))
-	for i, x1 := range xs1 {
-		ys[i] = mapping(x1, xs2[i])
-	}
-	return ys
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Pad down/up samples the input to the given size.
 func Pad(xs []mat.Tensor, seqLen int, padding func(i int) mat.Tensor) []mat.Tensor {
-	if len(xs) == seqLen {
-		return xs
-	}
-	if len(xs) > seqLen {
-		return xs[:seqLen]
-	}
-	padded := make([]mat.Tensor, seqLen)
-	copy(padded[:len(xs)], xs)
-	for i := len(xs); i < len(padded); i++ {
-		padded[i] = padding(i)
-	}
-	return padded
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SeparateMatrix returns a matrix of Node(s) represented as a slice of slice containing the elements extracted from the input.
 // The dimensions of the resulting matrix are the same of the input.
-func SeparateMatrix(x mat.Tensor) [][]mat.Tensor {
-	shape := x.Value().Shape()
-	rows, cols := shape[0], shape[1]
-	ys := make([][]mat.Tensor, rows)
-	for i := range ys {
-		row := make([]mat.Tensor, cols)
-		for j := range row {
-			row[j] = At(x, i, j)
-		}
-		ys[i] = row
-	}
-	return ys
-}
+func SeparateMatrix(x mat.Tensor) [][]mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 // SeparateVec returns a slice of Node(s) containing the elements extracted from the input.
 // The size of the vector equals the number of input elements.
 // You can think of this method as the inverse of the ag.Concat operator.
-func SeparateVec(x mat.Tensor) []mat.Tensor {
-	size := x.Value().Size()
-	ys := make([]mat.Tensor, size)
-	for i := 0; i < size; i++ {
-		ys[i] = At(x, i)
-	}
-	return ys
-}
+func SeparateVec(x mat.Tensor) []mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 // SplitVec splits the x Node into multiple chunks.
-func SplitVec(x mat.Tensor, chunks int) []mat.Tensor {
-	if x.Value().Size()%chunks != 0 {
-		panic("nn: incompatible chunks size")
-	}
-	l := 0
-	size := int(math.Ceil(float64(x.Value().Size()) / float64(chunks)))
-	ys := make([]mat.Tensor, chunks)
-	for i := 0; i < chunks; i++ {
-		ys[i] = Slice(x, l, 0, l+size, 1)
-		l += size
-	}
-	return ys
-}
+func SplitVec(x mat.Tensor, chunks int) []mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 // Sum returns the value that describes the sum of the sample.
 // It panics if the input is empty.
-func Sum(xs ...mat.Tensor) mat.Tensor {
-	sumVector := xs[0]
-	for i := 1; i < len(xs); i++ {
-		sumVector = Add(sumVector, xs[i])
-	}
-	return sumVector
-}
+func Sum(xs ...mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Mean returns the value that describes the average of the sample.
-func Mean(xs []mat.Tensor) mat.Tensor {
-	sumVector := xs[0]
-	for i := 1; i < len(xs); i++ {
-		sumVector = Add(sumVector, xs[i])
-	}
-	ln := sumVector.Value().(mat.Matrix).NewScalar(float64(len(xs)))
-	return DivScalar(sumVector, ln)
-}
+func Mean(xs []mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Maximum returns the value that describes the maximum of the sample.
-func Maximum(xs []mat.Tensor) mat.Tensor {
-	maxVector := xs[0]
-	for i := 1; i < len(xs); i++ {
-		maxVector = Max(maxVector, xs[i])
-	}
-	return maxVector
-}
+func Maximum(xs []mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // Minimum returns the value that describes the minimum of the sample.
-func Minimum(xs []mat.Tensor) mat.Tensor {
-	minVector := xs[0]
-	for i := 1; i < len(xs); i++ {
-		minVector = Min(minVector, xs[i])
-	}
-	return minVector
-}
+func Minimum(xs []mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // BiLinear performs a bilinear transformation of the type (x_1 W x_2)
-func BiLinear(w, x1, x2 mat.Tensor) mat.Tensor {
-	return Mul(Mul(T(x1), w), x2)
-}
+func BiLinear(w, x1, x2 mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // BiAffine performs a biaffine transformation.
 func BiAffine(w, u, v, b, x1, x2 mat.Tensor) mat.Tensor {
-	return Add(Add(Add(BiLinear(w, x1, x2), Mul(T(u), x1)), Mul(T(v), x2)), b)
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor)
 }
 
 // PositiveELU returns a new operator node as a result of ELU(x) + 1.
-func PositiveELU(x mat.Tensor) mat.Tensor {
-	one := x.Value().(mat.Matrix).NewScalar(1)
-	return AddScalar(ELU(x, one), one)
-}
+func PositiveELU(x mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // LogSoftmax returns a new operator node as a result of Log(Softmax(x)).
 func LogSoftmax(x mat.Tensor) mat.Tensor {
-	return Log(Softmax(x))
+	_ = "STUB: not implemented"
+	return *
+
+	// LogSumExp "trick" computes the log of the sum of exponentials of input elements.
+	// When the input is one, this must be a vector. Alternatively, the calculation
+	// is conducted on a list of scalars.
+	new(mat.Tensor)
 }
 
-// LogSumExp "trick" computes the log of the sum of exponentials of input elements.
-// When the input is one, this must be a vector. Alternatively, the calculation
-// is conducted on a list of scalars.
-func LogSumExp(xs ...mat.Tensor) mat.Tensor {
-	if len(xs) == 1 {
-		x := xs[0]
-		max := ReduceMax(x)
-		sum := ReduceSum(Exp(SubScalar(x, max)))
-		return Add(max, Log(sum))
-	}
-
-	max := ScalarMax(xs)
-	var sum mat.Tensor
-	for _, v := range xs {
-		sum = Add(sum, Exp(Sub(v, max)))
-	}
-	return Add(max, Log(sum))
-}
+func LogSumExp(xs ...mat.Tensor) mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
 // RowViews calls RowView for each row of x, returning a new slice
 // of row-view Nodes.
-func RowViews(x mat.Tensor) []mat.Tensor {
-	ys := make([]mat.Tensor, x.Value().Shape()[0])
-	for i := range ys {
-		ys[i] = RowView(x, i)
-	}
-	return ys
-}
+func RowViews(x mat.Tensor) []mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 // ColViews calls ColView for each column of x, returning a new slice
 // of column-view Nodes.
-func ColViews(x mat.Tensor) []mat.Tensor {
-	ys := make([]mat.Tensor, x.Value().Shape()[1])
-	for i := range ys {
-		ys[i] = ColView(x, i)
-	}
-	return ys
-}
+func ColViews(x mat.Tensor) []mat.Tensor { _ = "STUB: not implemented"; return nil }

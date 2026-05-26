@@ -12,22 +12,14 @@ package asm64
 //	for i, v := range x {
 //		y[i] += alpha * v
 //	}
-func AxpyUnitary(alpha float64, x, y []float64) {
-	for i, v := range x {
-		y[i] += alpha * v
-	}
-}
+func AxpyUnitary(alpha float64, x, y []float64) { _ = "STUB: not implemented"; return }
 
 // AxpyUnitaryTo is
 //
 //	for i, v := range x {
 //		dst[i] = alpha*v + y[i]
 //	}
-func AxpyUnitaryTo(dst []float64, alpha float64, x, y []float64) {
-	for i, v := range x {
-		dst[i] = alpha*v + y[i]
-	}
-}
+func AxpyUnitaryTo(dst []float64, alpha float64, x, y []float64) { _ = "STUB: not implemented"; return }
 
 // AxpyInc is
 //
@@ -37,11 +29,8 @@ func AxpyUnitaryTo(dst []float64, alpha float64, x, y []float64) {
 //		iy += incY
 //	}
 func AxpyInc(alpha float64, x, y []float64, n, incX, incY, ix, iy uintptr) {
-	for i := 0; i < int(n); i++ {
-		y[iy] += alpha * x[ix]
-		ix += incX
-		iy += incY
-	}
+	_ = "STUB: not implemented"
+	return
 }
 
 // AxpyIncTo is
@@ -53,10 +42,6 @@ func AxpyInc(alpha float64, x, y []float64, n, incX, incY, ix, iy uintptr) {
 //		idst += incDst
 //	}
 func AxpyIncTo(dst []float64, incDst, idst uintptr, alpha float64, x, y []float64, n, incX, incY, ix, iy uintptr) {
-	for i := 0; i < int(n); i++ {
-		dst[idst] = alpha*x[ix] + y[iy]
-		ix += incX
-		iy += incY
-		idst += incDst
-	}
+	_ = "STUB: not implemented"
+	return
 }

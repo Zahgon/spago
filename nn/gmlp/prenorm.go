@@ -28,14 +28,9 @@ func init() {
 
 // NewPreNorm returns a new PreNorm.
 func NewPreNorm[T float.DType](dim int, block *Block) *PreNorm {
-	return &PreNorm{
-		Block: block,
-		Norm:  layernorm.New[T](dim, 1e-12),
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Forward performs the forward step.
-func (m *PreNorm) Forward(xs ...mat.Tensor) []mat.Tensor {
-	ns := m.Norm.Forward(xs...)
-	return m.Block.Forward(ns...)
-}
+func (m *PreNorm) Forward(xs ...mat.Tensor) []mat.Tensor { _ = "STUB: not implemented"; return nil }

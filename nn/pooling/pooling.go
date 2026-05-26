@@ -7,7 +7,6 @@ package pooling
 import (
 	"encoding/gob"
 
-	"github.com/nlpodyssey/spago/ag"
 	"github.com/nlpodyssey/spago/mat"
 	"github.com/nlpodyssey/spago/nn"
 )
@@ -26,18 +25,8 @@ func init() {
 }
 
 // NewMax returns a new model.
-func NewMax(rows, columns int) *MaxPooling {
-	return &MaxPooling{
-		Rows:    rows,
-		Columns: columns,
-	}
-}
+func NewMax(rows, columns int) *MaxPooling { _ = "STUB: not implemented"; return nil }
 
 // Forward performs the forward step for each input node and returns the result.
 // The max pooling is applied independently to each input.
-func (m *MaxPooling) Forward(xs ...mat.Tensor) []mat.Tensor {
-	pooled := func(x mat.Tensor) mat.Tensor {
-		return ag.MaxPooling(x, m.Rows, m.Columns)
-	}
-	return ag.Map(pooled, xs)
-}
+func (m *MaxPooling) Forward(xs ...mat.Tensor) []mat.Tensor { _ = "STUB: not implemented"; return nil }

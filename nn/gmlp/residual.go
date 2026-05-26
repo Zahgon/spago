@@ -7,7 +7,6 @@ package gmlp
 import (
 	"encoding/gob"
 
-	"github.com/nlpodyssey/spago/ag"
 	"github.com/nlpodyssey/spago/mat"
 	"github.com/nlpodyssey/spago/nn"
 )
@@ -25,18 +24,7 @@ func init() {
 }
 
 // NewResidual returns a new Residual.
-func NewResidual(preNorm *PreNorm) *Residual {
-	return &Residual{
-		PreNorm: preNorm,
-	}
-}
+func NewResidual(preNorm *PreNorm) *Residual { _ = "STUB: not implemented"; return nil }
 
 // Forward performs the forward step.
-func (m *Residual) Forward(xs ...mat.Tensor) []mat.Tensor {
-	pns := m.PreNorm.Forward(xs...)
-	ys := make([]mat.Tensor, len(pns))
-	for i, pn := range pns {
-		ys[i] = ag.Add(pn, xs[i])
-	}
-	return ys
-}
+func (m *Residual) Forward(xs ...mat.Tensor) []mat.Tensor { _ = "STUB: not implemented"; return nil }

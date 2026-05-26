@@ -16,14 +16,9 @@ type Normal struct {
 // New returns a new Normal, initialized with the given standard deviation and
 // mean parameters.
 func New(std, mean float64, generator *rand.LockedRand) *Normal {
-	return &Normal{
-		Std:       std,
-		Mean:      mean,
-		generator: generator,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Next returns a random sample drawn from the distribution.
-func (n Normal) Next() float64 {
-	return n.generator.NormFloat64()*n.Std + n.Mean
-}
+func (n Normal) Next() float64 { _ = "STUB: not implemented"; return 0 }

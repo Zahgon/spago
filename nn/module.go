@@ -15,4 +15,4 @@ func init() {
 	gob.Register(&Module{})
 }
 
-func (m Module) mustEmbedModule() {}
+func (m Module) mustEmbedModule() { _ = "STUB: not implemented"; return }

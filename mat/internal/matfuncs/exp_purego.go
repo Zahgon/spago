@@ -8,10 +8,10 @@ package matfuncs
 
 // Exp32 computes the base-e exponential of each element of x, storing the result in y (32 bits).
 func Exp32(x, y []float32) {
-	exp(x, y)
+	_ = "STUB: not implemented"
+
+	// Exp64 computes the base-e exponential of each element of x, storing the result in y (64 bits).
+	return
 }
 
-// Exp64 computes the base-e exponential of each element of x, storing the result in y (64 bits).
-func Exp64(x, y []float64) {
-	exp(x, y)
-}
+func Exp64(x, y []float64) { _ = "STUB: not implemented"; return }

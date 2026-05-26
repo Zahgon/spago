@@ -13,27 +13,6 @@ package asm32
 //
 // where A is an m×n dense matrix, x and y are vectors, and alpha is a scalar.
 func Ger(m, n uintptr, alpha float32, x []float32, incX uintptr, y []float32, incY uintptr, a []float32, lda uintptr) {
-
-	if incX == 1 && incY == 1 {
-		x = x[:m]
-		y = y[:n]
-		for i, xv := range x {
-			AxpyUnitary(alpha*xv, y, a[uintptr(i)*lda:uintptr(i)*lda+n])
-		}
-		return
-	}
-
-	var ky, kx uintptr
-	if int(incY) < 0 {
-		ky = uintptr(-int(n-1) * int(incY))
-	}
-	if int(incX) < 0 {
-		kx = uintptr(-int(m-1) * int(incX))
-	}
-
-	ix := kx
-	for i := 0; i < int(m); i++ {
-		AxpyInc(alpha*x[ix], y, a[uintptr(i)*lda:uintptr(i)*lda+n], n, incY, 1, ky, 0)
-		ix += incX
-	}
+	_ = "STUB: not implemented"
+	return
 }

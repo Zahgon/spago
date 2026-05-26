@@ -7,7 +7,6 @@ package dropout
 import (
 	"encoding/gob"
 
-	"github.com/nlpodyssey/spago/ag"
 	"github.com/nlpodyssey/spago/mat"
 	"github.com/nlpodyssey/spago/nn"
 )
@@ -25,16 +24,7 @@ func init() {
 }
 
 // New returns a new model.
-func New(p float64) *Model {
-	return &Model{
-		P: p,
-	}
-}
+func New(p float64) *Model { _ = "STUB: not implemented"; return nil }
 
 // Forward performs the forward step for each input node and returns the result.
-func (m *Model) Forward(xs ...mat.Tensor) []mat.Tensor {
-	if m.P == 0 {
-		return xs
-	}
-	return ag.Map(ag.DropoutFunc(m.P), xs)
-}
+func (m *Model) Forward(xs ...mat.Tensor) []mat.Tensor { _ = "STUB: not implemented"; return nil }

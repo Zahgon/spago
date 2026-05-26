@@ -20,10 +20,10 @@ func init() {
 
 // Sum32 returns the sum of all values of x (32 bits).
 func Sum32(x []float32) float32 {
-	return sum32(x)
+	_ = "STUB: not implemented"
+
+	// Sum64 returns the sum of all values of x (64 bits).
+	return 0
 }
 
-// Sum64 returns the sum of all values of x (64 bits).
-func Sum64(x []float64) float64 {
-	return sum64(x)
-}
+func Sum64(x []float64) float64 { _ = "STUB: not implemented"; return 0 }

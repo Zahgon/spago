@@ -8,17 +8,12 @@ package matfuncs
 
 // Sum32 returns the sum of all values of x (32 bits).
 func Sum32(x []float32) float32 {
-	return sum(x)
+	_ = "STUB: not implemented"
+
+	// Sum64 returns the sum of all values of x (64 bits).
+	return 0
 }
 
-// Sum64 returns the sum of all values of x (64 bits).
-func Sum64(x []float64) float64 {
-	return sum(x)
-}
+func Sum64(x []float64) float64 { _ = "STUB: not implemented"; return 0 }
 
-func sum[F float32 | float64](x []F) (y F) {
-	for _, v := range x {
-		y += v
-	}
-	return
-}
+func sum[F float32 | float64](x []F) (y F) { _ = "STUB: not implemented"; return *new(F) }

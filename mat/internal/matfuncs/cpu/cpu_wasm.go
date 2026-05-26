@@ -13,6 +13,6 @@ package cpu
 
 const cacheLineSize = 0
 
-func initOptions() {}
+func initOptions() { _ = "STUB: not implemented"; return }
 
-func archInit() {}
+func archInit() { _ = "STUB: not implemented"; return }

@@ -5,12 +5,8 @@
 package ag
 
 import (
-	"fmt"
-	"log"
-	"reflect"
 	"runtime"
 	"sync"
-	"sync/atomic"
 
 	"github.com/nlpodyssey/spago/mat"
 	"github.com/nlpodyssey/spago/mat/float"
@@ -25,9 +21,7 @@ var (
 // SetForceSyncExecution enables or disables the forcing of synchronous execution for all operators.
 // When enabled, the operators will run synchronously, regardless of the "async" flag in the Run() function.
 // This setting can be particularly useful for debugging.
-func SetForceSyncExecution(enable bool) {
-	forceSyncExecution = enable
-}
+func SetForceSyncExecution(enable bool) { _ = "STUB: not implemented"; return }
 
 // backwardState is an enumeration type associated to an Operator, to keep
 // track of its visited status among different backpropagation phases.
@@ -117,207 +111,106 @@ type Operator struct {
 
 // NewOperator creates a new operator with the given AutoGradFunction.
 // Note that the operator's Value() can only be accessed after calling the Run() function.
-func NewOperator(f AutoGradFunction) *Operator {
-	return &Operator{fn: f}
-}
+func NewOperator(f AutoGradFunction) *Operator { _ = "STUB: not implemented"; return nil }
 
 // SetAt sets the value at the given indices.
 // It panics if the given indices are out of range.
-func (o *Operator) SetAt(m mat.Tensor, indices ...int) {
-	o.Value().SetAt(m, indices...)
-}
+func (o *Operator) SetAt(m mat.Tensor, indices ...int) { _ = "STUB: not implemented"; return }
 
 // At returns the value at the given indices.
 // It panics if the given indices are out of range.
 func (o *Operator) At(indices ...int) mat.Tensor {
-	return o.Value().At(indices...)
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor)
 }
 
 // Run starts the execution of the operator, performing the forward pass.
 // If the optional async argument is set to true, the forward pass will be executed in a separate goroutine.
 // The function returns a pointer to the Operator, allowing for method chaining.
-func (o *Operator) Run(async ...bool) *Operator {
-	isAsync := !forceSyncExecution && len(async) > 0 && async[0]
+func (o *Operator) Run(async ...bool) *Operator { _ = "STUB: not implemented"; return nil }
 
-	if isAsync {
-		//lint:ignore S1019 explicitly set the buffer size to 0 as the channel is used as a signal
-		o.broadcast = make(chan struct{}, 0)
-		forwardGuard <- struct{}{}
-		go func() {
-			o.executeForward()
-			<-forwardGuard
-		}()
-		return o
-	}
-
-	o.executeForward()
-	return o
-}
+//lint:ignore S1019 explicitly set the buffer size to 0 as the channel is used as a signal
 
 // forward executes the forward function and inform all goroutines that have been waiting for the result.
-func (o *Operator) executeForward() {
-	value, err := o.fn.Forward()
-	if err != nil {
-		log.Fatalf("ag: error during forward pass: %v", err) // TODO: handle error
-	}
-	o.value = value
+func (o *Operator) executeForward() { _ = "STUB: not implemented"; return }
 
-	if o.broadcast != nil { // if nil, it means that the operator is not async
-		close(o.broadcast) // inform all goroutines that have been waiting for the result
-	}
-}
+// TODO: handle error
+
+// if nil, it means that the operator is not async
+// inform all goroutines that have been waiting for the result
 
 // Value returns the result of the function.
 func (o *Operator) Value() mat.Tensor {
-	if o.broadcast != nil { // if nil, it means that the operator is not async
-		<-o.broadcast // wait for the forward goroutine to finish
-	}
-	return o.value
+	_ = "STUB: not implemented"
+	return *
+	// if nil, it means that the operator is not async
+	new(mat.Tensor)
 }
+
+// wait for the forward goroutine to finish
 
 func (o *Operator) Item() float.Float {
-	return o.Value().Item()
+	_ = "STUB: not implemented"
+	return *
+
+	// Grad returns the gradients accumulated during the backward pass.
+	new(float.Float)
 }
 
-// Grad returns the gradients accumulated during the backward pass.
-func (o *Operator) Grad() mat.Tensor {
-	if o.isBackwardIdle() || atomic.LoadInt64(&o.pendingGrads) == 0 {
-		return o.Value().Grad()
-	}
+func (o *Operator) Grad() mat.Tensor { _ = "STUB: not implemented"; return *new(mat.Tensor) }
 
-	<-o.broadcastGrad // wait for the backward goroutine to finish
-	return o.Value().Grad()
-}
+// wait for the backward goroutine to finish
 
 // HasGrad returns true if there are accumulated gradients.
-func (o *Operator) HasGrad() bool {
-	return !isNil(o.Grad()) // safety wait for the backward goroutine to finish
-}
+func (o *Operator) HasGrad() bool { _ = "STUB: not implemented"; return false }
+
+// safety wait for the backward goroutine to finish
 
 // RequiresGrad returns true if the node requires gradients.
-func (o *Operator) RequiresGrad() bool {
-	o.onceRequiresGrad.Do(func() {
-		for _, op := range o.Operands() {
-			if op.RequiresGrad() {
-				o.requiresGrad = true // memoize the result
-				o.Value().(mat.Matrix).SetRequiresGrad(true)
-				return
-			}
-		}
-	})
-	return o.requiresGrad
-}
+func (o *Operator) RequiresGrad() bool { _ = "STUB: not implemented"; return false }
+
+// memoize the result
 
 // Operands returns the operands of the operator.
-func (o *Operator) Operands() []mat.Tensor {
-	o.onceOperands.Do(func() {
-		o.operands = o.fn.Operands() // memoize the result
-	})
-	return o.operands
-}
+func (o *Operator) Operands() []mat.Tensor { _ = "STUB: not implemented"; return nil }
+
+// memoize the result
 
 // ZeroGrad clears the gradients.
-func (o *Operator) ZeroGrad() {
-	if o.HasGrad() {
-		o.Value().ZeroGrad()
-	}
-}
+func (o *Operator) ZeroGrad() { _ = "STUB: not implemented"; return }
 
 // AccGrad accumulates the gradients to the node itself.
-func (o *Operator) AccGrad(grad mat.Tensor) {
-	o.Value().AccGrad(grad)
+func (o *Operator) AccGrad(grad mat.Tensor) { _ = "STUB: not implemented"; return }
 
-	// Don't decrement the counter if the backward pass is not running.
-	if !o.isBackwardIdle() && atomic.AddInt64(&o.pendingGrads, -1) == 0 {
-		close(o.broadcastGrad) // notify all goroutines that have been waiting for the gradients
-	}
-}
+// Don't decrement the counter if the backward pass is not running.
 
-func (o *Operator) assignOutputGradient() error {
-	grad := o.Value().Grad()
+// notify all goroutines that have been waiting for the gradients
 
-	if !isNil(grad) {
-		o.pendingGrads--
-		return nil
-	}
+func (o *Operator) assignOutputGradient() error { _ = "STUB: not implemented"; return nil }
 
-	if o.Value().Size() == 1 {
-		o.AccGrad(o.Value().(mat.Matrix).NewScalar(1.))
-		return nil
-	}
+func (o *Operator) prepareBackwardPass() { _ = "STUB: not implemented"; return }
 
-	return fmt.Errorf("ag: missing gradient for %v", o)
-}
+//lint:ignore S1019 explicitly set the buffer size to 0 as the channel is used as a signal
 
-func (o *Operator) prepareBackwardPass() {
-	if !o.RequiresGrad() {
-		return
-	}
+func (o *Operator) processBackwardPass(wg *sync.WaitGroup) { _ = "STUB: not implemented"; return }
 
-	o.pendingGrads++
-	if !o.trySetBackwardPending() {
-		return
-	}
+// decrement when the backward pass is done
 
-	//lint:ignore S1019 explicitly set the buffer size to 0 as the channel is used as a signal
-	o.broadcastGrad = make(chan struct{}, 0)
+func (o *Operator) executeBackward(wg *sync.WaitGroup) { _ = "STUB: not implemented"; return }
 
-	for _, operand := range o.Operands() {
-		if oo, ok := operand.(*Operator); ok {
-			oo.prepareBackwardPass()
-		}
-	}
-}
+// wait until the accumulated gradients are ready
 
-func (o *Operator) processBackwardPass(wg *sync.WaitGroup) {
-	if !o.RequiresGrad() || !o.trySetBackwardOngoing() {
-		return
-	}
+// no gradients to propagate
 
-	wg.Add(1) // decrement when the backward pass is done
-	go o.executeBackward(wg)
+// TODO: handle error
 
-	for _, operand := range o.Operands() {
-		if oo, ok := operand.(*Operator); ok {
-			oo.processBackwardPass(wg)
-		}
-	}
-}
+func (o *Operator) isBackwardIdle() bool { _ = "STUB: not implemented"; return false }
 
-func (o *Operator) executeBackward(wg *sync.WaitGroup) {
-	defer wg.Done()
-	defer o.setBackwardIdle()
+func (o *Operator) setBackwardIdle() { _ = "STUB: not implemented"; return }
 
-	grad := o.Grad() // wait until the accumulated gradients are ready
-	if grad == nil {
-		return // no gradients to propagate
-	}
+func (o *Operator) trySetBackwardPending() bool { _ = "STUB: not implemented"; return false }
 
-	if err := o.fn.Backward(grad); err != nil {
-		log.Fatalf("ag: error during backward pass: %v", err) // TODO: handle error
-	}
-}
-
-func (o *Operator) isBackwardIdle() bool {
-	return atomic.LoadUint32(&o.backwardState) == idle
-}
-
-func (o *Operator) setBackwardIdle() {
-	atomic.StoreUint32(&o.backwardState, idle)
-}
-
-func (o *Operator) trySetBackwardPending() bool {
-	return atomic.CompareAndSwapUint32(&o.backwardState, idle, pending)
-}
-
-func (o *Operator) trySetBackwardOngoing() bool {
-	return atomic.CompareAndSwapUint32(&o.backwardState, pending, ongoing)
-}
+func (o *Operator) trySetBackwardOngoing() bool { _ = "STUB: not implemented"; return false }
 
 // isNil returns true if the gradients are nil.
-func isNil(grad any) bool {
-	if grad == nil || reflect.ValueOf(grad).IsNil() {
-		return true
-	}
-	return false
-}
+func isNil(grad any) bool { _ = "STUB: not implemented"; return false }

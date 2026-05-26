@@ -7,21 +7,13 @@ package ag
 import "github.com/nlpodyssey/spago/mat/float"
 
 // Shape returns the size in each dimension.
-func (o *Operator) Shape() []int {
-	return o.Value().Shape()
-}
+func (o *Operator) Shape() []int { _ = "STUB: not implemented"; return nil }
 
 // Dims returns the number of dimensions.
-func (o *Operator) Dims() int {
-	return o.Value().Dims()
-}
+func (o *Operator) Dims() int { _ = "STUB: not implemented"; return 0 }
 
 // Size returns the total number of elements.
-func (o *Operator) Size() int {
-	return o.Value().Size()
-}
+func (o *Operator) Size() int { _ = "STUB: not implemented"; return 0 }
 
 // Data returns the underlying data of the tensor.
-func (o *Operator) Data() float.Slice {
-	return o.Value().Data()
-}
+func (o *Operator) Data() float.Slice { _ = "STUB: not implemented"; return *new(float.Slice) }

@@ -4,12 +4,6 @@
 
 package rand
 
-import (
-	"encoding/binary"
-	"io"
-	"math/bits"
-)
-
 // PCGSource is an implementation of a 64-bit permuted congruential
 // generator as defined in
 //
@@ -43,47 +37,21 @@ const (
 )
 
 // Seed uses the provided seed value to initialize the generator to a deterministic state.
-func (pcg *PCGSource) Seed(seed uint64) {
-	pcg.low = seed
-	pcg.high = seed // TODO: What is right?
-}
+func (pcg *PCGSource) Seed(seed uint64) { _ = "STUB: not implemented"; return }
+
+// TODO: What is right?
 
 // Uint64 returns a pseudo-random 64-bit unsigned integer as a uint64.
-func (pcg *PCGSource) Uint64() uint64 {
-	pcg.multiply()
-	pcg.add()
-	// XOR high and low 64 bits together and rotate right by high 6 bits of state.
-	return bits.RotateLeft64(pcg.high^pcg.low, -int(pcg.high>>58))
-}
+func (pcg *PCGSource) Uint64() uint64 { _ = "STUB: not implemented"; return 0 }
 
-func (pcg *PCGSource) add() {
-	var carry uint64
-	pcg.low, carry = bits.Add64(pcg.low, incLow, 0)
-	pcg.high, _ = bits.Add64(pcg.high, incHigh, carry)
-}
+// XOR high and low 64 bits together and rotate right by high 6 bits of state.
 
-func (pcg *PCGSource) multiply() {
-	hi, lo := bits.Mul64(pcg.low, mulLow)
-	hi += pcg.high * mulLow
-	hi += pcg.low * mulHigh
-	pcg.low = lo
-	pcg.high = hi
-}
+func (pcg *PCGSource) add() { _ = "STUB: not implemented"; return }
+
+func (pcg *PCGSource) multiply() { _ = "STUB: not implemented"; return }
 
 // MarshalBinary returns the binary representation of the current state of the generator.
-func (pcg *PCGSource) MarshalBinary() ([]byte, error) {
-	var buf [16]byte
-	binary.BigEndian.PutUint64(buf[:8], pcg.high)
-	binary.BigEndian.PutUint64(buf[8:], pcg.low)
-	return buf[:], nil
-}
+func (pcg *PCGSource) MarshalBinary() ([]byte, error) { _ = "STUB: not implemented"; return nil, nil }
 
 // UnmarshalBinary sets the state of the generator to the state represented in data.
-func (pcg *PCGSource) UnmarshalBinary(data []byte) error {
-	if len(data) < 16 {
-		return io.ErrUnexpectedEOF
-	}
-	pcg.low = binary.BigEndian.Uint64(data[8:])
-	pcg.high = binary.BigEndian.Uint64(data[:8])
-	return nil
-}
+func (pcg *PCGSource) UnmarshalBinary(data []byte) error { _ = "STUB: not implemented"; return nil }

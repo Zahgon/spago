@@ -5,8 +5,6 @@
 package gradfn
 
 import (
-	"fmt"
-
 	"github.com/nlpodyssey/spago/mat"
 )
 
@@ -17,39 +15,20 @@ type Stack[O mat.Tensor] struct {
 }
 
 // NewStack returns a new Stack Function.
-func NewStack[O mat.Tensor](xs []O) *Stack[O] {
-	return &Stack[O]{xs: xs}
-}
+func NewStack[O mat.Tensor](xs []O) *Stack[O] { _ = "STUB: not implemented"; return nil }
 
 // Operands returns the list of operands.
 func (r *Stack[O]) Operands() []O {
-	return r.xs
+	_ = "STUB: not implemented"
+
+	// Forward computes the output of the function.
+	return nil
 }
 
-// Forward computes the output of the function.
 func (r *Stack[O]) Forward() (mat.Tensor, error) {
-	if len(r.xs) == 0 {
-		return nil, fmt.Errorf("fn: Stack has no operands")
-	}
-	vs := make([]mat.Matrix, len(r.xs))
-	for i, x := range r.xs {
-		vs[i] = x.Value().(mat.Matrix)
-	}
-	return vs[0].NewStack(vs...), nil
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor), nil
 }
 
 // Backward computes the backward pass.
-func (r *Stack[O]) Backward(gy mat.Tensor) error {
-	if gy.Shape()[0] != len(r.xs) {
-		return fmt.Errorf("fn: matrices with not compatible size")
-	}
-
-	for i, x := range r.xs {
-		if !x.RequiresGrad() {
-			continue
-		}
-		gyRow := gy.(mat.Matrix).ExtractRow(i).ReshapeInPlace(x.Value().Shape()...)
-		x.AccGrad(gyRow)
-	}
-	return nil
-}
+func (r *Stack[O]) Backward(gy mat.Tensor) error { _ = "STUB: not implemented"; return nil }

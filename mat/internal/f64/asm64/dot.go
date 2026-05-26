@@ -13,12 +13,7 @@ package asm64
 //		sum += y[i] * v
 //	}
 //	return sum
-func DotUnitary(x, y []float64) (sum float64) {
-	for i, v := range x {
-		sum += y[i] * v
-	}
-	return sum
-}
+func DotUnitary(x, y []float64) (sum float64) { _ = "STUB: not implemented"; return 0 }
 
 // DotInc is
 //
@@ -29,10 +24,6 @@ func DotUnitary(x, y []float64) (sum float64) {
 //	}
 //	return sum
 func DotInc(x, y []float64, n, incX, incY, ix, iy uintptr) (sum float64) {
-	for i := 0; i < int(n); i++ {
-		sum += y[iy] * x[ix]
-		ix += incX
-		iy += incY
-	}
-	return sum
+	_ = "STUB: not implemented"
+	return 0
 }

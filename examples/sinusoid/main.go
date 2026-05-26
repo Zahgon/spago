@@ -6,14 +6,11 @@ import (
 	"math"
 
 	"github.com/nlpodyssey/spago/ag"
-	"github.com/nlpodyssey/spago/initializers"
 	"github.com/nlpodyssey/spago/losses"
 	"github.com/nlpodyssey/spago/mat"
 	"github.com/nlpodyssey/spago/mat/float"
 	"github.com/nlpodyssey/spago/mat/rand"
 	"github.com/nlpodyssey/spago/nn"
-	"github.com/nlpodyssey/spago/nn/activation"
-	"github.com/nlpodyssey/spago/nn/linear"
 	"github.com/nlpodyssey/spago/optimizers"
 	"github.com/nlpodyssey/spago/optimizers/adam"
 )
@@ -25,65 +22,30 @@ type SineModel struct {
 }
 
 // NewSineModel creates a new model for sine approximation
-func NewSineModel[T float.DType]() *SineModel {
-	model := &SineModel{}
+func NewSineModel[T float.DType]() *SineModel { _ = "STUB: not implemented"; return nil }
 
-	// Create layers with proper activation modules
-	model.Layers = nn.ModuleList[nn.StandardModel]{
-		linear.New[T](1, 64),
-		activation.New(activation.ReLU),
-		linear.New[T](64, 64),
-		activation.New(activation.ReLU),
-		linear.New[T](64, 64),
-		activation.New(activation.ReLU),
-		linear.New[T](64, 1),
-	}
-
-	return model
-}
+// Create layers with proper activation modules
 
 // Forward performs the forward pass
 func (m *SineModel) Forward(xs ...mat.Tensor) []mat.Tensor {
+	_ = "STUB: not implemented"
 	// ModuleList.Forward handles the sequential processing
-	return m.Layers.Forward(xs...)
+	return nil
 }
 
 // InitRandom initializes the model weights
-func (m *SineModel) InitRandom(seed uint64) *SineModel {
-	r := rand.NewLockedRand(seed)
+func (m *SineModel) InitRandom(seed uint64) *SineModel { _ = "STUB: not implemented"; return nil }
 
-	// Initialize only the linear layers
-	nn.ForEachParam(m, func(param *nn.Param) {
-		initializers.XavierUniform(param.Value().(mat.Matrix), 1.0, r)
-	})
-
-	return m
-}
+// Initialize only the linear layers
 
 // GenerateBatch creates a batch of training data more efficiently
 func GenerateBatch[T float.DType](batchSize int, rng *rand.LockedRand) ([]mat.Tensor, []mat.Tensor) {
+	_ = "STUB: not implemented"
 	// Pre-allocate arrays
-	xData := make([]mat.Tensor, batchSize)
-	yData := make([]mat.Tensor, batchSize)
-
-	// Fill arrays
-	for i := 0; i < batchSize; i++ {
-		var x float64
-		if i%2 == 0 {
-			x = rng.Float64() * math.Pi
-		} else {
-			x = rng.Float64() * 2 * math.Pi
-		}
-		if i%3 == 0 {
-			x = rng.Float64() * -1 * math.Pi
-		}
-		y := math.Cos(x)
-		xData[i] = mat.Scalar(x)
-		yData[i] = mat.Scalar(y)
-	}
-
-	return xData, yData
+	return nil, nil
 }
+
+// Fill arrays
 
 func main() {
 	const (

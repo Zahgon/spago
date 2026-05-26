@@ -5,8 +5,6 @@
 package gradfn
 
 import (
-	"fmt"
-
 	"github.com/nlpodyssey/spago/mat"
 )
 
@@ -18,33 +16,16 @@ type ELU[O mat.Tensor] struct {
 }
 
 // NewELU returns a new ELU Function.
-func NewELU[O mat.Tensor](x O, alpha O) *ELU[O] {
-	return &ELU[O]{
-		x:     x,
-		alpha: alpha,
-	}
-}
+func NewELU[O mat.Tensor](x O, alpha O) *ELU[O] { _ = "STUB: not implemented"; return nil }
 
 // Operands returns the list of operands.
-func (r *ELU[O]) Operands() []mat.Tensor {
-	return []mat.Tensor{r.x, r.alpha}
-}
+func (r *ELU[O]) Operands() []mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 // Forward computes the output of the function.
 func (r *ELU[O]) Forward() (mat.Tensor, error) {
-	y := r.x.Value().(mat.Matrix).ApplyWithAlpha(elu, r.alpha.Value().Item().F64())
-	return y, nil
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor), nil
 }
 
 // Backward computes the backward pass.
-func (r *ELU[O]) Backward(gy mat.Tensor) error {
-	if !mat.SameDims(r.x.Value(), gy) {
-		return fmt.Errorf("fn: matrices have incompatible dimensions")
-	}
-	if r.x.RequiresGrad() {
-		gx := r.x.Value().(mat.Matrix).ApplyWithAlpha(eluDeriv, r.alpha.Value().Item().F64())
-		gx.ProdInPlace(gy.(mat.Matrix))
-		r.x.AccGrad(gx)
-	}
-	return nil
-}
+func (r *ELU[O]) Backward(gy mat.Tensor) error { _ = "STUB: not implemented"; return nil }

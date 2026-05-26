@@ -5,11 +5,9 @@ import (
 	"log"
 
 	"github.com/nlpodyssey/spago/ag"
-	"github.com/nlpodyssey/spago/initializers"
 	"github.com/nlpodyssey/spago/losses"
 	"github.com/nlpodyssey/spago/mat"
 	"github.com/nlpodyssey/spago/mat/float"
-	"github.com/nlpodyssey/spago/mat/rand"
 	"github.com/nlpodyssey/spago/nn"
 	"github.com/nlpodyssey/spago/optimizers"
 	"github.com/nlpodyssey/spago/optimizers/sgd"
@@ -28,22 +26,15 @@ type Linear struct {
 }
 
 // NewLinear creates a new Linear module with the specified input and output dimensions
-func NewLinear[T float.DType](in, out int) *Linear {
-	return &Linear{
-		W: nn.NewParam(mat.NewDense[T](mat.WithShape(out, in))),
-		B: nn.NewParam(mat.NewDense[T](mat.WithShape(out))),
-	}
-}
+func NewLinear[T float.DType](in, out int) *Linear { _ = "STUB: not implemented"; return nil }
 
 // InitRandom initializes the Linear module with random weights using the Xavier uniform distribution
-func (m *Linear) InitRandom(seed uint64) *Linear {
-	initializers.XavierUniform(m.W.Value().(mat.Matrix), 1.0, rand.NewLockedRand(seed))
-	return m
-}
+func (m *Linear) InitRandom(seed uint64) *Linear { _ = "STUB: not implemented"; return nil }
 
 // Forward applies the forward pass of the Linear module to the input x
 func (m *Linear) Forward(x mat.Tensor) mat.Tensor {
-	return ag.Add(ag.Mul(m.W, x), m.B)
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor)
 }
 
 type T = float64

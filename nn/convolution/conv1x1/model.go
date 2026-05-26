@@ -8,7 +8,6 @@ package conv1x1
 import (
 	"encoding/gob"
 
-	"github.com/nlpodyssey/spago/ag"
 	"github.com/nlpodyssey/spago/mat"
 	"github.com/nlpodyssey/spago/mat/float"
 	"github.com/nlpodyssey/spago/nn"
@@ -36,24 +35,7 @@ func init() {
 }
 
 // New returns a new Model.
-func New[T float.DType](config Config) *Model {
-	return &Model{
-		Config: config,
-		W:      nn.NewParam(mat.NewDense[T](mat.WithShape(config.OutputChannels, config.InputChannels))),
-		B:      nn.NewParam(mat.NewDense[T](mat.WithShape(config.OutputChannels))),
-	}
-}
+func New[T float.DType](config Config) *Model { _ = "STUB: not implemented"; return nil }
 
 // Forward performs the forward step. Each "x" is a channel.
-func (m *Model) Forward(xs ...mat.Tensor) []mat.Tensor {
-	xm := ag.Stack(xs...)
-	mm := ag.Mul(m.W, xm)
-
-	ys := make([]mat.Tensor, m.Config.OutputChannels)
-	for outCh := range ys {
-		val := ag.T(ag.RowView(mm, outCh))
-		bias := ag.At(m.B, outCh)
-		ys[outCh] = ag.AddScalar(val, bias)
-	}
-	return ys
-}
+func (m *Model) Forward(xs ...mat.Tensor) []mat.Tensor { _ = "STUB: not implemented"; return nil }

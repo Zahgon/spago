@@ -7,7 +7,6 @@ package highway
 import (
 	"encoding/gob"
 
-	"github.com/nlpodyssey/spago/ag"
 	"github.com/nlpodyssey/spago/mat"
 	"github.com/nlpodyssey/spago/mat/float"
 	"github.com/nlpodyssey/spago/nn"
@@ -32,30 +31,19 @@ func init() {
 
 // New returns a new model with parameters initialized to zeros.
 func New[T float.DType](in int, activation activation.Activation) *Model {
-	return &Model{
-		WIn:        nn.NewParam(mat.NewDense[T](mat.WithShape(in, in))),
-		BIn:        nn.NewParam(mat.NewDense[T](mat.WithShape(in))),
-		WT:         nn.NewParam(mat.NewDense[T](mat.WithShape(in, in))),
-		BT:         nn.NewParam(mat.NewDense[T](mat.WithShape(in))),
-		Activation: activation,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Forward performs the forward step for each input node and returns the result.
-func (m *Model) Forward(xs ...mat.Tensor) []mat.Tensor {
-	ys := make([]mat.Tensor, len(xs))
-	for i, x := range xs {
-		ys[i] = m.forward(x)
-	}
-	return ys
-}
+func (m *Model) Forward(xs ...mat.Tensor) []mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 // t = sigmoid(wT (dot) x + bT)
 // h = f(wIn (dot) x + bIn)
 // y = t * h + (1 - t) * x
 func (m *Model) forward(x mat.Tensor) mat.Tensor {
-	t := ag.Sigmoid(ag.Affine(m.BT, m.WT, x))
-	h := activation.New(m.Activation).Forward(ag.Affine(m.BIn, m.WIn, x))[0] // TODO: refactor for performance
-	y := ag.Add(ag.Prod(t, h), ag.Prod(ag.ReverseSub(t, x.Value().(mat.Matrix).NewScalar(1)), x))
-	return y
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor)
 }
+
+// TODO: refactor for performance

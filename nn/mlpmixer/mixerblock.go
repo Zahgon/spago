@@ -7,9 +7,7 @@ package mlpmixer
 
 import (
 	"encoding/gob"
-	"fmt"
 
-	"github.com/nlpodyssey/spago/ag"
 	"github.com/nlpodyssey/spago/mat"
 	"github.com/nlpodyssey/spago/mat/float"
 	"github.com/nlpodyssey/spago/nn"
@@ -45,40 +43,19 @@ func init() {
 }
 
 // New returns a new model with parameters initialized to zeros.
-func New[T float.DType](config Config) *MixerBlock {
-	return &MixerBlock{
-		Config:           config,
-		TokenMixerFF:     newFeedForward[T](config.Channels, config.HiddenSizeTokenMixer, config.ActFunctionTokenMixer, 0),
-		TokenLayerNorm:   layernorm.New[T](config.InputSize, config.Eps),
-		ChannelMixerFF:   newFeedForward[T](config.InputSize, config.HiddenSizeChannelMixer, config.ActFunctionChannelMixer, 0),
-		ChannelLayerNorm: layernorm.New[T](config.InputSize, config.Eps),
-	}
-}
+func New[T float.DType](config Config) *MixerBlock { _ = "STUB: not implemented"; return nil }
 
 // Forward performs the forward step for each input node and returns the result.
-func (m *MixerBlock) Forward(xs ...mat.Tensor) []mat.Tensor {
-	if len(xs) > m.Config.Channels {
-		panic(fmt.Sprintf("mlpmixer: maximum sequence length is %d, got %d",
-			m.Config.Channels, len(xs)))
-	}
+func (m *MixerBlock) Forward(xs ...mat.Tensor) []mat.Tensor { _ = "STUB: not implemented"; return nil }
 
-	xs = m.residual(m.tokenMix(xs), xs)
-	xs = m.residual(m.channelMix(xs), xs)
-	return xs
-}
-
-func (m *MixerBlock) tokenMix(xs []mat.Tensor) []mat.Tensor {
-	normalized := m.TokenLayerNorm.Forward(xs...)
-	cols := ag.ColViews(ag.Stack(normalized...))
-	ys := m.TokenMixerFF.Forward(cols...)
-	return ag.Map(ag.T, ag.RowViews(ag.T(ag.Stack(ys...))))
-}
+func (m *MixerBlock) tokenMix(xs []mat.Tensor) []mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 func (m *MixerBlock) channelMix(xs []mat.Tensor) []mat.Tensor {
-	normalized := m.ChannelLayerNorm.Forward(xs...)
-	return m.ChannelMixerFF.Forward(normalized...)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (m *MixerBlock) residual(xs []mat.Tensor, residual []mat.Tensor) []mat.Tensor {
-	return ag.Map2(ag.Add, xs, residual)
+	_ = "STUB: not implemented"
+	return nil
 }

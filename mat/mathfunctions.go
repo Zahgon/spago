@@ -5,115 +5,79 @@
 package mat
 
 import (
-	"fmt"
-	"math"
-
 	"github.com/nlpodyssey/spago/mat/float"
 )
 
 // SmallestNonzero returns the smallest positive, non-zero value representable by the type.
-func SmallestNonzero[T float.DType]() T {
-	switch any(T(0)).(type) {
-	case float32:
-		return T(math.SmallestNonzeroFloat32)
-	case float64:
-		return T(math.SmallestNonzeroFloat64)
-	default:
-		panic(fmt.Sprintf("mat: unexpected type %T", T(0)))
-	}
-}
+func SmallestNonzero[T float.DType]() T { _ = "STUB: not implemented"; return *new(T) }
 
 // Pi mathematical constant.
 func Pi[T float.DType]() T {
-	return T(math.Pi)
+	_ = "STUB: not implemented"
+
+	// Pow returns x**y, the base-x exponential of y.
+	return *new(T)
 }
 
-// Pow returns x**y, the base-x exponential of y.
-func Pow[T float.DType](x, y T) T {
-	return T(math.Pow(float64(x), float64(y)))
-}
+func Pow[T float.DType](x, y T) T { _ = "STUB: not implemented"; return *new(T) }
 
 // Cos returns the cosine of the radian argument x.
-func Cos[T float.DType](x T) T {
-	return T(math.Cos(float64(x)))
-}
+func Cos[T float.DType](x T) T { _ = "STUB: not implemented"; return *new(T) }
 
 // Sin returns the sine of the radian argument x.
-func Sin[T float.DType](x T) T {
-	return T(math.Sin(float64(x)))
-}
+func Sin[T float.DType](x T) T { _ = "STUB: not implemented"; return *new(T) }
 
 // Cosh returns the hyperbolic cosine of x.
-func Cosh[T float.DType](x T) T {
-	return T(math.Cosh(float64(x)))
-}
+func Cosh[T float.DType](x T) T { _ = "STUB: not implemented"; return *new(T) }
 
 // Sinh returns the hyperbolic sine of x.
-func Sinh[T float.DType](x T) T {
-	return T(math.Sinh(float64(x)))
-}
+func Sinh[T float.DType](x T) T { _ = "STUB: not implemented"; return *new(T) }
 
 // Exp returns e**x, the base-e exponential of x.
-func Exp[T float.DType](x T) T {
-	return T(math.Exp(float64(x)))
-}
+func Exp[T float.DType](x T) T { _ = "STUB: not implemented"; return *new(T) }
 
 // Abs returns the absolute value of x.
-func Abs[T float.DType](x T) T {
-	return T(math.Abs(float64(x)))
-}
+func Abs[T float.DType](x T) T { _ = "STUB: not implemented"; return *new(T) }
 
 // Sqrt returns the square root of x.
-func Sqrt[T float.DType](x T) T {
-	return T(math.Sqrt(float64(x)))
-}
+func Sqrt[T float.DType](x T) T { _ = "STUB: not implemented"; return *new(T) }
 
 // Log returns the natural logarithm of x.
-func Log[T float.DType](x T) T {
-	return T(math.Log(float64(x)))
-}
+func Log[T float.DType](x T) T { _ = "STUB: not implemented"; return *new(T) }
 
 // Tan returns the tangent of the radian argument x.
-func Tan[T float.DType](x T) T {
-	return T(math.Tan(float64(x)))
-}
+func Tan[T float.DType](x T) T { _ = "STUB: not implemented"; return *new(T) }
 
 // Tanh returns the hyperbolic tangent of x.
-func Tanh[T float.DType](x T) T {
-	return T(math.Tanh(float64(x)))
-}
+func Tanh[T float.DType](x T) T { _ = "STUB: not implemented"; return *new(T) }
 
 // Max returns the larger of x or y.
-func Max[T float.DType](x, y T) T {
-	return T(math.Max(float64(x), float64(y)))
-}
+func Max[T float.DType](x, y T) T { _ = "STUB: not implemented"; return *new(T) }
 
 // Inf returns positive infinity if sign >= 0, negative infinity if sign < 0.
 func Inf[T float.DType](sign int) T {
-	return T(math.Inf(sign))
+	_ = "STUB: not implemented"
+	return *
+
+	// IsInf reports whether f is an infinity, according to sign.
+	new(T)
 }
 
-// IsInf reports whether f is an infinity, according to sign.
-func IsInf[T float.DType](f T, sign int) bool {
-	return math.IsInf(float64(f), sign)
-}
+func IsInf[T float.DType](f T, sign int) bool { _ = "STUB: not implemented"; return false }
 
 // NaN returns an IEEE 754 “not-a-number” value.
 func NaN[T float.DType]() T {
-	return T(math.NaN())
+	_ = "STUB: not implemented"
+	return *
+
+	// Ceil returns the least integer value greater than or equal to x.
+	new(T)
 }
 
-// Ceil returns the least integer value greater than or equal to x.
-func Ceil[T float.DType](x T) T {
-	return T(math.Ceil(float64(x)))
-}
+func Ceil[T float.DType](x T) T { _ = "STUB: not implemented"; return *new(T) }
 
 // Floor returns the greatest integer value less than or equal to x.
-func Floor[T float.DType](x T) T {
-	return T(math.Floor(float64(x)))
-}
+func Floor[T float.DType](x T) T { _ = "STUB: not implemented"; return *new(T) }
 
 // Round returns the nearest integer, rounding half away from zero.
-func Round[T float.DType](x T) T {
-	return T(math.Round(float64(x)))
-}
+func Round[T float.DType](x T) T { _ = "STUB: not implemented"; return *new(T) }

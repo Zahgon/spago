@@ -5,8 +5,6 @@
 package gradfn
 
 import (
-	"fmt"
-
 	"github.com/nlpodyssey/spago/mat"
 )
 
@@ -18,24 +16,13 @@ type UnaryElementwise[O mat.Tensor] struct {
 }
 
 // Operands returns the list of operands.
-func (r *UnaryElementwise[O]) Operands() []mat.Tensor {
-	return []mat.Tensor{r.x}
-}
+func (r *UnaryElementwise[O]) Operands() []mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 // Forward computes the output of this node.
 func (r *UnaryElementwise[O]) Forward() (mat.Tensor, error) {
-	return r.x.Value().(mat.Matrix).Apply(r.f), nil
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor), nil
 }
 
 // Backward computes the backward pass.
-func (r *UnaryElementwise[O]) Backward(gy mat.Tensor) error {
-	if !mat.SameDims(r.x.Value(), gy) {
-		return fmt.Errorf("fn: matrices have incompatible dimensions")
-	}
-	if r.x.RequiresGrad() {
-		gx := r.x.Value().(mat.Matrix).Apply(r.df)
-		gx.ProdInPlace(gy.(mat.Matrix))
-		r.x.AccGrad(gx)
-	}
-	return nil
-}
+func (r *UnaryElementwise[O]) Backward(gy mat.Tensor) error { _ = "STUB: not implemented"; return nil }

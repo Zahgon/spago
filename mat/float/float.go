@@ -4,10 +4,6 @@
 
 package float
 
-import (
-	"fmt"
-)
-
 // Float is implemented by any value that can be resolved
 // to the types constrained by DType.
 type Float interface {
@@ -22,20 +18,14 @@ type Float interface {
 // Interface converts a concrete DType value to an internal representation
 // compatible with Float.
 func Interface[T DType](v T) Float {
-	return float[T]{v: v}
+	_ = "STUB: not implemented"
+	return *
+
+	// ValueOf converts a Float value to a concrete DType.
+	new(Float)
 }
 
-// ValueOf converts a Float value to a concrete DType.
-func ValueOf[T DType](i Float) T {
-	switch any(T(0)).(type) {
-	case float32:
-		return T(i.F32())
-	case float64:
-		return T(i.F64())
-	default:
-		panic(fmt.Errorf("mat: unexpected value type %T", T(0)))
-	}
-}
+func ValueOf[T DType](i Float) T { _ = "STUB: not implemented"; return *new(T) }
 
 // float is the built-in implementation of a Float.
 type float[T DType] struct {
@@ -43,28 +33,13 @@ type float[T DType] struct {
 }
 
 // F32 returns the value as float32, converting it if necessary.
-func (f float[_]) F32() float32 {
-	return float32(f.v)
-}
+func (f float[_]) F32() float32 { _ = "STUB: not implemented"; return 0 }
 
 // F64 returns the value as float64, converting it if necessary.
-func (f float[_]) F64() float64 {
-	return float64(f.v)
-}
+func (f float[_]) F64() float64 { _ = "STUB: not implemented"; return 0 }
 
 // BitSize returns the size in bits of the internal float value type.
-func (f float[T]) BitSize() int {
-	switch any(T(0)).(type) {
-	case float32:
-		return 32
-	case float64:
-		return 64
-	default:
-		panic(fmt.Errorf("mat: unexpected value type %T", T(0)))
-	}
-}
+func (f float[T]) BitSize() int { _ = "STUB: not implemented"; return 0 }
 
 // String returns the value as a string.
-func (f float[_]) String() string {
-	return fmt.Sprint(f.v)
-}
+func (f float[_]) String() string { _ = "STUB: not implemented"; return "" }

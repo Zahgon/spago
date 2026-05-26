@@ -11,133 +11,88 @@ type DenseFloat32 struct {
 }
 
 func GetRootAsDenseFloat32(buf []byte, offset flatbuffers.UOffsetT) *DenseFloat32 {
-	n := flatbuffers.GetUOffsetT(buf[offset:])
-	x := &DenseFloat32{}
-	x.Init(buf, n+offset)
-	return x
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func FinishDenseFloat32Buffer(builder *flatbuffers.Builder, offset flatbuffers.UOffsetT) {
-	builder.Finish(offset)
+	_ = "STUB: not implemented"
+	return
 }
 
 func GetSizePrefixedRootAsDenseFloat32(buf []byte, offset flatbuffers.UOffsetT) *DenseFloat32 {
-	n := flatbuffers.GetUOffsetT(buf[offset+flatbuffers.SizeUint32:])
-	x := &DenseFloat32{}
-	x.Init(buf, n+offset+flatbuffers.SizeUint32)
-	return x
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func FinishSizePrefixedDenseFloat32Buffer(builder *flatbuffers.Builder, offset flatbuffers.UOffsetT) {
-	builder.FinishSizePrefixed(offset)
+	_ = "STUB: not implemented"
+	return
 }
 
 func (rcv *DenseFloat32) Init(buf []byte, i flatbuffers.UOffsetT) {
-	rcv._tab.Bytes = buf
-	rcv._tab.Pos = i
+	_ = "STUB: not implemented"
+	return
 }
 
 func (rcv *DenseFloat32) Table() flatbuffers.Table {
-	return rcv._tab
+	_ = "STUB: not implemented"
+	return *new(flatbuffers.Table)
 }
 
-func (rcv *DenseFloat32) Dtype() int32 {
-	o := flatbuffers.UOffsetT(rcv._tab.Offset(4))
-	if o != 0 {
-		return rcv._tab.GetInt32(o + rcv._tab.Pos)
-	}
-	return 0
-}
+func (rcv *DenseFloat32) Dtype() int32 { _ = "STUB: not implemented"; return 0 }
 
-func (rcv *DenseFloat32) MutateDtype(n int32) bool {
-	return rcv._tab.MutateInt32Slot(4, n)
-}
+func (rcv *DenseFloat32) MutateDtype(n int32) bool { _ = "STUB: not implemented"; return false }
 
-func (rcv *DenseFloat32) RequiresFrad() bool {
-	o := flatbuffers.UOffsetT(rcv._tab.Offset(6))
-	if o != 0 {
-		return rcv._tab.GetBool(o + rcv._tab.Pos)
-	}
-	return false
-}
+func (rcv *DenseFloat32) RequiresFrad() bool { _ = "STUB: not implemented"; return false }
 
-func (rcv *DenseFloat32) MutateRequiresFrad(n bool) bool {
-	return rcv._tab.MutateBoolSlot(6, n)
-}
+func (rcv *DenseFloat32) MutateRequiresFrad(n bool) bool { _ = "STUB: not implemented"; return false }
 
-func (rcv *DenseFloat32) Shape(j int) int32 {
-	o := flatbuffers.UOffsetT(rcv._tab.Offset(8))
-	if o != 0 {
-		a := rcv._tab.Vector(o)
-		return rcv._tab.GetInt32(a + flatbuffers.UOffsetT(j*4))
-	}
-	return 0
-}
+func (rcv *DenseFloat32) Shape(j int) int32 { _ = "STUB: not implemented"; return 0 }
 
-func (rcv *DenseFloat32) ShapeLength() int {
-	o := flatbuffers.UOffsetT(rcv._tab.Offset(8))
-	if o != 0 {
-		return rcv._tab.VectorLen(o)
-	}
-	return 0
-}
+func (rcv *DenseFloat32) ShapeLength() int { _ = "STUB: not implemented"; return 0 }
 
-func (rcv *DenseFloat32) MutateShape(j int, n int32) bool {
-	o := flatbuffers.UOffsetT(rcv._tab.Offset(8))
-	if o != 0 {
-		a := rcv._tab.Vector(o)
-		return rcv._tab.MutateInt32(a+flatbuffers.UOffsetT(j*4), n)
-	}
-	return false
-}
+func (rcv *DenseFloat32) MutateShape(j int, n int32) bool { _ = "STUB: not implemented"; return false }
 
-func (rcv *DenseFloat32) Data(j int) float32 {
-	o := flatbuffers.UOffsetT(rcv._tab.Offset(10))
-	if o != 0 {
-		a := rcv._tab.Vector(o)
-		return rcv._tab.GetFloat32(a + flatbuffers.UOffsetT(j*4))
-	}
-	return 0
-}
+func (rcv *DenseFloat32) Data(j int) float32 { _ = "STUB: not implemented"; return 0 }
 
-func (rcv *DenseFloat32) DataLength() int {
-	o := flatbuffers.UOffsetT(rcv._tab.Offset(10))
-	if o != 0 {
-		return rcv._tab.VectorLen(o)
-	}
-	return 0
-}
+func (rcv *DenseFloat32) DataLength() int { _ = "STUB: not implemented"; return 0 }
 
-func (rcv *DenseFloat32) MutateData(j int, n float32) bool {
-	o := flatbuffers.UOffsetT(rcv._tab.Offset(10))
-	if o != 0 {
-		a := rcv._tab.Vector(o)
-		return rcv._tab.MutateFloat32(a+flatbuffers.UOffsetT(j*4), n)
-	}
-	return false
-}
+func (rcv *DenseFloat32) MutateData(j int, n float32) bool { _ = "STUB: not implemented"; return false }
 
-func DenseFloat32Start(builder *flatbuffers.Builder) {
-	builder.StartObject(4)
-}
+func DenseFloat32Start(builder *flatbuffers.Builder) { _ = "STUB: not implemented"; return }
+
 func DenseFloat32AddDtype(builder *flatbuffers.Builder, dtype int32) {
-	builder.PrependInt32Slot(0, dtype, 0)
+	_ = "STUB: not implemented"
+	return
 }
+
 func DenseFloat32AddRequiresFrad(builder *flatbuffers.Builder, requiresFrad bool) {
-	builder.PrependBoolSlot(1, requiresFrad, false)
+	_ = "STUB: not implemented"
+	return
 }
+
 func DenseFloat32AddShape(builder *flatbuffers.Builder, shape flatbuffers.UOffsetT) {
-	builder.PrependUOffsetTSlot(2, flatbuffers.UOffsetT(shape), 0)
+	_ = "STUB: not implemented"
+	return
 }
+
 func DenseFloat32StartShapeVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
-	return builder.StartVector(4, numElems, 4)
+	_ = "STUB: not implemented"
+	return *new(flatbuffers.UOffsetT)
 }
+
 func DenseFloat32AddData(builder *flatbuffers.Builder, data flatbuffers.UOffsetT) {
-	builder.PrependUOffsetTSlot(3, flatbuffers.UOffsetT(data), 0)
+	_ = "STUB: not implemented"
+	return
 }
+
 func DenseFloat32StartDataVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
-	return builder.StartVector(4, numElems, 4)
+	_ = "STUB: not implemented"
+	return *new(flatbuffers.UOffsetT)
 }
+
 func DenseFloat32End(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
-	return builder.EndObject()
+	_ = "STUB: not implemented"
+	return *new(flatbuffers.UOffsetT)
 }

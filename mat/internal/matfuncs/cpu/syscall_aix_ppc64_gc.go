@@ -13,7 +13,6 @@ package cpu
 
 import (
 	"syscall"
-	"unsafe"
 )
 
 //go:cgo_import_dynamic libc_getsystemcfg getsystemcfg "libc.a/shr_64.o"
@@ -31,6 +30,6 @@ func rawSyscall6(trap, nargs, a1, a2, a3, a4, a5, a6 uintptr) (r1, r2 uintptr, e
 func syscall6(trap, nargs, a1, a2, a3, a4, a5, a6 uintptr) (r1, r2 uintptr, err errno)
 
 func callgetsystemcfg(label int) (r1 uintptr, e1 errno) {
-	r1, _, e1 = syscall6(uintptr(unsafe.Pointer(&libc_getsystemcfg)), 1, uintptr(label), 0, 0, 0, 0, 0)
-	return
+	_ = "STUB: not implemented"
+	return 0, *new(errno)
 }

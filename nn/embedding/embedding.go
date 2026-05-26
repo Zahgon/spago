@@ -16,16 +16,6 @@ type Embedding struct {
 	idx int
 }
 
-func (e *Embedding) AccGrad(gx mat.Tensor) {
-	e.m.mu.Lock()
-	defer e.m.mu.Unlock()
-	e.m.embedGradIdx[e.idx] = struct{}{}
-	e.Param.AccGrad(gx)
-}
+func (e *Embedding) AccGrad(gx mat.Tensor) { _ = "STUB: not implemented"; return }
 
-func (e *Embedding) ZeroGrad() {
-	e.m.mu.Lock()
-	defer e.m.mu.Unlock()
-	delete(e.m.embedGradIdx, e.idx)
-	e.Param.ZeroGrad()
-}
+func (e *Embedding) ZeroGrad() { _ = "STUB: not implemented"; return }

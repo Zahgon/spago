@@ -5,8 +5,6 @@
 package gradfn
 
 import (
-	"fmt"
-
 	"github.com/nlpodyssey/spago/mat"
 )
 
@@ -18,34 +16,16 @@ type ReduceMax[O mat.Tensor] struct {
 }
 
 // NewReduceMax returns a new ReduceMax Function.
-func NewReduceMax[O mat.Tensor](x O) *ReduceMax[O] {
-	return &ReduceMax[O]{
-		x: x,
-	}
-}
+func NewReduceMax[O mat.Tensor](x O) *ReduceMax[O] { _ = "STUB: not implemented"; return nil }
 
 // Operands returns the list of operands.
-func (r *ReduceMax[O]) Operands() []mat.Tensor {
-	return []mat.Tensor{r.x}
-}
+func (r *ReduceMax[O]) Operands() []mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 // Forward computes the output of this function.
 func (r *ReduceMax[O]) Forward() (mat.Tensor, error) {
-	xv := r.x.Value()
-	r.argmax = xv.(mat.Matrix).ArgMax()
-	return xv.(mat.Matrix).At(r.argmax), nil
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor), nil
 }
 
 // Backward computes the backward pass.
-func (r *ReduceMax[O]) Backward(gy mat.Tensor) error {
-	if !mat.IsScalar(gy) {
-		return fmt.Errorf("fn: the gradient had to be a scalar")
-	}
-	if r.x.RequiresGrad() {
-		x := r.x.Value()
-		gx := x.(mat.Matrix).ZerosLike()
-		gx.SetAt(gy.(mat.Matrix), r.argmax)
-		r.x.AccGrad(gx)
-	}
-	return nil
-}
+func (r *ReduceMax[O]) Backward(gy mat.Tensor) error { _ = "STUB: not implemented"; return nil }

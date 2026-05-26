@@ -7,4 +7,4 @@
 
 package cpu
 
-func archInit() {}
+func archInit() { _ = "STUB: not implemented"; return }

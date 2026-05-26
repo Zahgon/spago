@@ -5,10 +5,6 @@
 // Package mattest provides utilities for testing code involving spaGO matrices.
 package mat
 
-import (
-	"fmt"
-)
-
 // T requires a subset of methods from testing.TB.
 // This interface is primarily useful to simplify the testing of the
 // package itself.
@@ -27,22 +23,8 @@ type T interface {
 // The expected matrix is not allowed to be nil, otherwise the function always
 // produces an error.
 func AssertMatrixEquals(t T, expected, actual Tensor, args ...any) bool {
-	t.Helper()
-	if expected == nil {
-		t.Error("the expected matrix must not be nil")
-		return false
-	}
-	if actual == nil {
-		t.Errorf("Matrices are not equal:\nexpected:\n%g\nactual:\nnil\n%s",
-			expected, fmt.Sprint(args...))
-		return false
-	}
-	if !Equal(expected, actual) {
-		t.Errorf("Matrices are not equal:\nexpected:\n%g\nactual:\n%g\n%s",
-			expected, actual, fmt.Sprint(args...))
-		return false
-	}
-	return true
+	_ = "STUB: not implemented"
+	return false
 }
 
 // RequireMatrixEquals tests whether expected is equal to actual; if not,
@@ -52,10 +34,8 @@ func AssertMatrixEquals(t T, expected, actual Tensor, args ...any) bool {
 // The expected matrix is not allowed to be nil, otherwise the function always
 // produces an error and fails.
 func RequireMatrixEquals(t T, expected, actual Matrix, args ...any) {
-	t.Helper()
-	if !AssertMatrixEquals(t, expected, actual, args...) {
-		t.FailNow()
-	}
+	_ = "STUB: not implemented"
+	return
 }
 
 // AssertMatrixInDelta tests whether expected and actual have the same shape
@@ -67,22 +47,8 @@ func RequireMatrixEquals(t T, expected, actual Matrix, args ...any) {
 // The expected matrix is not allowed to be nil, otherwise the function always
 // produces an error.
 func AssertMatrixInDelta(t T, expected, actual Matrix, delta float64, args ...any) bool {
-	t.Helper()
-	if expected == nil {
-		t.Error("the expected matrix must not be nil")
-		return false
-	}
-	if actual == nil {
-		t.Errorf("Matrices values are not within delta %g:\nexpected:\n%g\nactual:\nnil\n%s",
-			delta, expected, fmt.Sprint(args...))
-		return false
-	}
-	if !InDelta(expected, actual, delta) {
-		t.Errorf("Matrices values are not within delta %g:\nexpected:\n%g\nactual:\n%g\n%s",
-			delta, expected, actual, fmt.Sprint(args...))
-		return false
-	}
-	return true
+	_ = "STUB: not implemented"
+	return false
 }
 
 // RequireMatrixInDelta tests whether expected and actual have the same shape
@@ -92,8 +58,6 @@ func AssertMatrixInDelta(t T, expected, actual Matrix, delta float64, args ...an
 // The expected matrix is not allowed to be nil, otherwise the function always
 // produces an error and fails.
 func RequireMatrixInDelta(t T, expected, actual Matrix, delta float64, args ...any) {
-	t.Helper()
-	if !AssertMatrixInDelta(t, expected, actual, delta, args...) {
-		t.FailNow()
-	}
+	_ = "STUB: not implemented"
+	return
 }

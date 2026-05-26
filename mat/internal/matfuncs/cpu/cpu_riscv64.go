@@ -9,4 +9,4 @@ package cpu
 
 const cacheLineSize = 32
 
-func initOptions() {}
+func initOptions() { _ = "STUB: not implemented"; return }

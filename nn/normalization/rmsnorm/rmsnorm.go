@@ -11,7 +11,6 @@ package rmsnorm
 import (
 	"encoding/gob"
 
-	"github.com/nlpodyssey/spago/ag"
 	"github.com/nlpodyssey/spago/mat"
 	"github.com/nlpodyssey/spago/mat/float"
 	"github.com/nlpodyssey/spago/nn"
@@ -31,23 +30,7 @@ func init() {
 }
 
 // New returns a new model with parameters initialized to zeros.
-func New[T float.DType](size int) *Model {
-	return &Model{
-		W: nn.NewParam(mat.NewDense[T](mat.WithShape(size))),
-		B: nn.NewParam(mat.NewDense[T](mat.WithShape(size))),
-	}
-}
+func New[T float.DType](size int) *Model { _ = "STUB: not implemented"; return nil }
 
 // Forward performs the forward step for each input node and returns the result.
-func (m *Model) Forward(xs ...mat.Tensor) []mat.Tensor {
-	if len(xs) == 0 {
-		return nil
-	}
-	eps := xs[0].Value().(mat.Matrix).NewScalar(1e-10)
-	ys := make([]mat.Tensor, len(xs))
-	for i, x := range xs {
-		rms := ag.Sqrt(ag.ReduceMean(ag.Square(x)))
-		ys[i] = ag.Add(ag.Prod(ag.DivScalar(x, ag.AddScalar(rms, eps)), m.W), m.B)
-	}
-	return ys
-}
+func (m *Model) Forward(xs ...mat.Tensor) []mat.Tensor { _ = "STUB: not implemented"; return nil }

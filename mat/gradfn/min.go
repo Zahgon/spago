@@ -5,8 +5,6 @@
 package gradfn
 
 import (
-	"fmt"
-
 	"github.com/nlpodyssey/spago/mat"
 )
 
@@ -18,56 +16,18 @@ type Min[O mat.Tensor] struct {
 }
 
 // NewMin returns a new Min Function.
-func NewMin[O mat.Tensor](x1 O, x2 O) *Min[O] {
-	return &Min[O]{
-		x1: x1,
-		x2: x2,
-	}
-}
+func NewMin[O mat.Tensor](x1 O, x2 O) *Min[O] { _ = "STUB: not implemented"; return nil }
 
 // Operands returns the list of operands.
-func (r *Min[O]) Operands() []mat.Tensor {
-	return []mat.Tensor{r.x1, r.x2}
-}
+func (r *Min[O]) Operands() []mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 // Forward computes the output of the function.
 func (r *Min[O]) Forward() (mat.Tensor, error) {
-	return r.x1.Value().(mat.Matrix).Minimum(r.x2.Value().(mat.Matrix)), nil
+	_ = "STUB: not implemented"
+	return *new(mat.Tensor), nil
 }
 
 // Backward computes the backward pass.
-func (r *Min[O]) Backward(gy mat.Tensor) error {
-	x1v := r.x1.Value().(mat.Matrix)
-	x2v := r.x2.Value().(mat.Matrix)
-	if !mat.SameDims(x1v, gy) || !mat.SameDims(x2v, gy) {
-		return fmt.Errorf("fn: matrices have incompatible dimensions")
-	}
+func (r *Min[O]) Backward(gy mat.Tensor) error { _ = "STUB: not implemented"; return nil }
 
-	n := gy.Size()
-	// FIXME: avoid casting to specific type
-	gyData := mat.Data[float64](gy.(mat.Matrix))
-	x1vData := mat.Data[float64](x1v)
-	x2vData := mat.Data[float64](x2v)
-
-	if r.x1.RequiresGrad() {
-		gxData := make([]float64, n)
-		for i := 0; i < n; i++ {
-			if x1vData[i] < x2vData[i] {
-				gxData[i] = gyData[i]
-			}
-		}
-		gx := x1v.NewMatrix(mat.WithBacking(gxData))
-		r.x1.AccGrad(gx)
-	}
-	if r.x2.RequiresGrad() {
-		gxData := make([]float64, n)
-		for i := 0; i < n; i++ {
-			if x2vData[i] < x1vData[i] {
-				gxData[i] = gyData[i]
-			}
-		}
-		gx := x1v.NewMatrix(mat.WithBacking(gxData))
-		r.x2.AccGrad(gx)
-	}
-	return nil
-}
+// FIXME: avoid casting to specific type

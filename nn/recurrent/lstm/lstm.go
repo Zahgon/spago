@@ -7,8 +7,6 @@ package lstm
 import (
 	"encoding/gob"
 
-	"github.com/nlpodyssey/spago/ag"
-	"github.com/nlpodyssey/spago/initializers"
 	"github.com/nlpodyssey/spago/mat"
 	"github.com/nlpodyssey/spago/mat/float"
 	"github.com/nlpodyssey/spago/mat/rand"
@@ -61,62 +59,29 @@ func init() {
 }
 
 // New returns a new model with parameters initialized to zeros.
-func New[T float.DType](in, out int) *Model {
-	return &Model{
-		UseRefinedGates: false,
+func New[T float.DType](in, out int) *Model { _ = "STUB: not implemented"; return nil }
 
-		// Input gate
-		WIn:    nn.NewParam(mat.NewDense[T](mat.WithShape(out, in))),
-		WInRec: nn.NewParam(mat.NewDense[T](mat.WithShape(out, out))),
-		BIn:    nn.NewParam(mat.NewDense[T](mat.WithShape(out))),
+// Input gate
 
-		// Output gate
-		WOut:    nn.NewParam(mat.NewDense[T](mat.WithShape(out, in))),
-		WOutRec: nn.NewParam(mat.NewDense[T](mat.WithShape(out, out))),
-		BOut:    nn.NewParam(mat.NewDense[T](mat.WithShape(out))),
+// Output gate
 
-		// Forget gate
-		WFor:    nn.NewParam(mat.NewDense[T](mat.WithShape(out, in))),
-		WForRec: nn.NewParam(mat.NewDense[T](mat.WithShape(out, out))),
-		BFor:    nn.NewParam(mat.NewDense[T](mat.WithShape(out))),
+// Forget gate
 
-		// Candiate gate
-		WCand:    nn.NewParam(mat.NewDense[T](mat.WithShape(out, in))),
-		WCandRec: nn.NewParam(mat.NewDense[T](mat.WithShape(out, out))),
-		BCand:    nn.NewParam(mat.NewDense[T](mat.WithShape(out))),
-	}
-}
+// Candiate gate
 
 // WithRefinedGates sets whether to use refined gates.
 // Refined Gate: A Simple and Effective Gating Mechanism for Recurrent Units
 // (https://arxiv.org/pdf/2002.11338.pdf)
 //
 // Refined gates setting requires input size and output size be the same.
-func (m *Model) WithRefinedGates(value bool) *Model {
-	m.UseRefinedGates = value
-	return m
-}
+func (m *Model) WithRefinedGates(value bool) *Model { _ = "STUB: not implemented"; return nil }
 
 // Init initializes the parameters using Xavier uniform randomization.
 // It follows the LSTM bias hack setting the Forget gate to 1 (http://proceedings.mlr.press/v37/jozefowicz15.pdf).
-func (m *Model) Init(rndGen *rand.LockedRand) *Model {
-	nn.ForEachParam(m, func(param *nn.Param) {
-		initializers.XavierUniform(param.Value().(mat.Matrix), 1, rndGen)
-	})
-	initializers.Constant(m.BFor.Value().(mat.Matrix), 1.0)
-	return m
-}
+func (m *Model) Init(rndGen *rand.LockedRand) *Model { _ = "STUB: not implemented"; return nil }
 
 // Forward performs the forward step for each input node and returns the result.
-func (m *Model) Forward(xs ...mat.Tensor) []mat.Tensor {
-	ys := make([]mat.Tensor, len(xs))
-	var s *State = nil
-	for i, x := range xs {
-		s = m.Next(s, x)
-		ys[i] = s.Y
-	}
-	return ys
-}
+func (m *Model) Forward(xs ...mat.Tensor) []mat.Tensor { _ = "STUB: not implemented"; return nil }
 
 // Next performs a single forward step, producing a new state.
 //
@@ -127,29 +92,4 @@ func (m *Model) Forward(xs ...mat.Tensor) []mat.Tensor {
 // cand = f(wCand (dot) x + bC + wCandRec (dot) yPrev)
 // cell = inG * cand + forG * cellPrev
 // y = outG * f(cell)
-func (m *Model) Next(state *State, x mat.Tensor) (s *State) {
-	s = new(State)
-
-	var yPrev, cellPrev mat.Tensor = nil, nil
-	if state != nil {
-		yPrev, cellPrev = state.Y, state.Cell
-	}
-
-	s.InG = ag.Sigmoid(ag.Affine(m.BIn, m.WIn, x, m.WInRec, yPrev))
-	s.OutG = ag.Sigmoid(ag.Affine(m.BOut, m.WOut, x, m.WOutRec, yPrev))
-	s.ForG = ag.Sigmoid(ag.Affine(m.BFor, m.WFor, x, m.WForRec, yPrev))
-	s.Cand = ag.Tanh(ag.Affine(m.BCand, m.WCand, x, m.WCandRec, yPrev))
-
-	if m.UseRefinedGates {
-		s.InG = ag.Prod(s.InG, x)
-		s.OutG = ag.Prod(s.OutG, x)
-	}
-
-	if cellPrev != nil {
-		s.Cell = ag.Add(ag.Prod(s.InG, s.Cand), ag.Prod(s.ForG, cellPrev))
-	} else {
-		s.Cell = ag.Prod(s.InG, s.Cand)
-	}
-	s.Y = ag.Prod(s.OutG, ag.Tanh(s.Cell))
-	return
-}
+func (m *Model) Next(state *State, x mat.Tensor) (s *State) { _ = "STUB: not implemented"; return nil }

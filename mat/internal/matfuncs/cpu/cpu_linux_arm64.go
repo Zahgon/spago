@@ -32,40 +32,10 @@ const (
 	hwcap_ASIMDFHM = 1 << 23
 )
 
-func doinit() {
-	if err := readHWCAP(); err != nil {
-		// failed to read /proc/self/auxv, try reading registers directly
-		readARM64Registers()
-		return
-	}
+func doinit() { _ = "STUB: not implemented"; return }
 
-	// HWCAP feature bits
-	ARM64.HasFP = isSet(hwCap, hwcap_FP)
-	ARM64.HasASIMD = isSet(hwCap, hwcap_ASIMD)
-	ARM64.HasEVTSTRM = isSet(hwCap, hwcap_EVTSTRM)
-	ARM64.HasAES = isSet(hwCap, hwcap_AES)
-	ARM64.HasPMULL = isSet(hwCap, hwcap_PMULL)
-	ARM64.HasSHA1 = isSet(hwCap, hwcap_SHA1)
-	ARM64.HasSHA2 = isSet(hwCap, hwcap_SHA2)
-	ARM64.HasCRC32 = isSet(hwCap, hwcap_CRC32)
-	ARM64.HasATOMICS = isSet(hwCap, hwcap_ATOMICS)
-	ARM64.HasFPHP = isSet(hwCap, hwcap_FPHP)
-	ARM64.HasASIMDHP = isSet(hwCap, hwcap_ASIMDHP)
-	ARM64.HasCPUID = isSet(hwCap, hwcap_CPUID)
-	ARM64.HasASIMDRDM = isSet(hwCap, hwcap_ASIMDRDM)
-	ARM64.HasJSCVT = isSet(hwCap, hwcap_JSCVT)
-	ARM64.HasFCMA = isSet(hwCap, hwcap_FCMA)
-	ARM64.HasLRCPC = isSet(hwCap, hwcap_LRCPC)
-	ARM64.HasDCPOP = isSet(hwCap, hwcap_DCPOP)
-	ARM64.HasSHA3 = isSet(hwCap, hwcap_SHA3)
-	ARM64.HasSM3 = isSet(hwCap, hwcap_SM3)
-	ARM64.HasSM4 = isSet(hwCap, hwcap_SM4)
-	ARM64.HasASIMDDP = isSet(hwCap, hwcap_ASIMDDP)
-	ARM64.HasSHA512 = isSet(hwCap, hwcap_SHA512)
-	ARM64.HasSVE = isSet(hwCap, hwcap_SVE)
-	ARM64.HasASIMDFHM = isSet(hwCap, hwcap_ASIMDFHM)
-}
+// failed to read /proc/self/auxv, try reading registers directly
 
-func isSet(hwc uint, value uint) bool {
-	return hwc&value != 0
-}
+// HWCAP feature bits
+
+func isSet(hwc uint, value uint) bool { _ = "STUB: not implemented"; return false }

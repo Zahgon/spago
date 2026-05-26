@@ -5,9 +5,6 @@
 package activation
 
 import (
-	"fmt"
-	"strings"
-
 	"github.com/nlpodyssey/spago/ag"
 	"github.com/nlpodyssey/spago/mat"
 )
@@ -91,30 +88,15 @@ var activationFunctions = map[Activation]func(x mat.Tensor) mat.Tensor{
 var strActivationMap = strToActivationMap()
 
 // strToName maps a string to a Activation.
-func strToActivationMap() map[string]Activation {
-	invMap := make(map[string]Activation)
-	for k, v := range activationsMap {
-		invMap[v] = k
-		invMap[strings.ToLower(v)] = k
-	}
-	return invMap
-}
+func strToActivationMap() map[string]Activation { _ = "STUB: not implemented"; return nil }
 
 // ParseActivation maps a string to an activation function.
 // It returns an error if the string does not match any built-in activation (not even using lowercase).
 func ParseActivation(str string) (Activation, error) {
-	if value, ok := strActivationMap[str]; ok {
-		return value, nil
-	}
-	return -1, fmt.Errorf("activation: unknown activation function %s", str)
+	_ = "STUB: not implemented"
+	return *new(Activation), nil
 }
 
 // MustParseActivation maps a string to an activation function.
 // It panics if the string does not match any built-in activation (not even using lowercase).
-func MustParseActivation(str string) Activation {
-	value, err := ParseActivation(str)
-	if err != nil {
-		panic(err)
-	}
-	return value
-}
+func MustParseActivation(str string) Activation { _ = "STUB: not implemented"; return *new(Activation) }
